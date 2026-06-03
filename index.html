@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PTE Study Guide – 10 days Practice Schedule </title>
+<title>PTE Study Guide – 10 Days Study Routine</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -216,7 +216,7 @@
 <body>
 
 <div class="hero">
-  <div class="badge">PTE Practice</div>
+  <div class="badge">PTE Study Guide</div>
   <h1>PTE <span>Speaking</span> &<br>Writing Guide</h1>
   <p>Your complete template-based study companion for PTE Academic</p>
   <div class="score-tag">🎯 Target: 90 Score</div>
@@ -275,8 +275,9 @@
 
   <hr class="divider">
 
-  <div class="card trackable">
-    <div class="card-title">📖 Read Aloud <span class="chip chip-blue">Task Type</span></div>
+  <details>
+    <summary>📖 Read Aloud <span class="chip chip-blue" style="margin-left:8px;">Task Type</span></summary>
+    <div class="details-body">
     <div class="template-block" id="tpl-read-aloud">
       <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-read-aloud"></span></div>
       <div class="reminder" style="margin-bottom:0;">
@@ -287,10 +288,12 @@
       <button class="unmark-btn" onclick="unmarkStudied('tpl-read-aloud')" style="display:none" id="unbtn-tpl-read-aloud">✕ Unmark</button>
       <button class="mark-btn" id="btn-tpl-read-aloud" onclick="markStudied('tpl-read-aloud')">Mark as Studied</button>
     </div>
-  </div>
+    </div>
+  </details>
 
-  <div class="card trackable">
-    <div class="card-title">🔁 Repeat Sentence <span class="chip chip-blue">Task Type</span></div>
+  <details>
+    <summary>🔁 Repeat Sentence <span class="chip chip-blue" style="margin-left:8px;">Task Type</span></summary>
+    <div class="details-body">
     <div class="template-block" id="tpl-repeat-sentence">
       <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-repeat-sentence"></span></div>
       <div class="reminder" style="margin-bottom:0;">
@@ -301,7 +304,8 @@
       <button class="unmark-btn" onclick="unmarkStudied('tpl-repeat-sentence')" style="display:none" id="unbtn-tpl-repeat-sentence">✕ Unmark</button>
       <button class="mark-btn" id="btn-tpl-repeat-sentence" onclick="markStudied('tpl-repeat-sentence')">Mark as Studied</button>
     </div>
-  </div>
+    </div>
+  </details>
 </div>
 
 <!-- ===== DESCRIBE IMAGE ===== -->
@@ -404,8 +408,9 @@
 
   <div class="reminder"><strong>📝 Step 1:</strong> Listen to the audio and write <strong>minimum 10 main keywords</strong> while listening.</div>
 
-  <div class="card">
-    <div class="card-title">📋 Basic Re-tell Template <span class="chip chip-orange">Core Format</span></div>
+  <details>
+    <summary>📋 Basic Re-tell Template <span class="chip chip-orange" style="margin-left:8px;">Core Format</span></summary>
+    <div class="details-body">
     <div class="template-block" id="tpl-retell-basic">
       <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-retell-basic"></span></div>
       <p>1. The lecture focused on <span class="fill">main topic</span> and covered several key areas related to it.</p>
@@ -420,11 +425,12 @@
       <button class="unmark-btn" onclick="unmarkStudied('tpl-retell-basic')" style="display:none" id="unbtn-tpl-retell-basic">✕ Unmark</button>
       <button class="mark-btn" id="btn-tpl-retell-basic" onclick="markStudied('tpl-retell-basic')">Mark as Studied</button>
     </div>
-  </div>
+    </div>
+  </details>
 
-  <div class="level-grid">
-    <div class="level-card easy">
-      <div class="level-label">✅ Format 1 — Simple English</div>
+  <details>
+    <summary>✅ Format 1 — Simple English</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-retell-simple">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-retell-simple"></span></div>
         <p>1. The lecture highlighted about <span class="fill">main topic</span> and <span class="fill">secondary topic</span>.</p>
@@ -441,9 +447,11 @@
         <button class="mark-btn" id="btn-tpl-retell-simple" onclick="markStudied('tpl-retell-simple')">Mark as Studied</button>
       </div>
     </div>
+  </details>
 
-    <div class="level-card medium">
-      <div class="level-label">⭐ Format 2 — Intermediate English → USE THIS</div>
+  <details>
+    <summary>⭐ Format 2 — Intermediate English → USE THIS</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-retell-inter">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-retell-inter"></span></div>
         <p>1. The lecture was mainly focused on <span class="fill">topic</span> and <span class="fill">related topic</span>.</p>
@@ -460,9 +468,11 @@
         <button class="mark-btn" id="btn-tpl-retell-inter" onclick="markStudied('tpl-retell-inter')">Mark as Studied</button>
       </div>
     </div>
+  </details>
 
-    <div class="level-card hard">
-      <div class="level-label">🔥 Format 3 — Advanced English → USE THIS</div>
+  <details>
+    <summary>🔥 Format 3 — Advanced English → USE THIS</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-retell-adv">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-retell-adv"></span></div>
         <p>1. The lecture primarily explored the topics of <span class="fill">main theme</span> and <span class="fill">secondary theme</span>, delving into their significance.</p>
@@ -479,7 +489,7 @@
         <button class="mark-btn" id="btn-tpl-retell-adv" onclick="markStudied('tpl-retell-adv')">Mark as Studied</button>
       </div>
     </div>
-  </div>
+  </details>
 </div>
 
 <!-- ===== SUMMARIZE GROUP DISCUSSION ===== -->
@@ -497,9 +507,9 @@
     </ul>
   </div>
 
-  <div class="level-grid">
-    <div class="level-card easy">
-      <div class="level-label">✅ Easy Level — Beginner English</div>
+  <details>
+    <summary>✅ Easy Level — Beginner English</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-sgd-easy">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sgd-easy"></span></div>
         <p>The discussion was about <span class="fill">main topic</span>.</p>
@@ -513,9 +523,11 @@
         <button class="mark-btn" id="btn-tpl-sgd-easy" onclick="markStudied('tpl-sgd-easy')">Mark as Studied</button>
       </div>
     </div>
+  </details>
 
-    <div class="level-card medium">
-      <div class="level-label">⭐ Medium Level — Standard PTE English</div>
+  <details>
+    <summary>⭐ Medium Level — Standard PTE English</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-sgd-medium">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sgd-medium"></span></div>
         <p>The discussion was mainly about <span class="fill">main topic</span>.</p>
@@ -529,9 +541,11 @@
         <button class="mark-btn" id="btn-tpl-sgd-medium" onclick="markStudied('tpl-sgd-medium')">Mark as Studied</button>
       </div>
     </div>
+  </details>
 
-    <div class="level-card hard">
-      <div class="level-label">🔥 Hard Level — Advanced/Fluent English → TRY TO USE THIS!</div>
+  <details>
+    <summary>🔥 Hard Level — Advanced/Fluent English → TRY TO USE THIS!</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-sgd-hard">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sgd-hard"></span></div>
         <p>The discussion primarily focused around <span class="fill">main topic</span>.</p>
@@ -545,7 +559,7 @@
         <button class="mark-btn" id="btn-tpl-sgd-hard" onclick="markStudied('tpl-sgd-hard')">Mark as Studied</button>
       </div>
     </div>
-  </div>
+  </details>
 </div>
 
 <!-- ===== RESPOND TO SITUATION ===== -->
@@ -564,9 +578,9 @@
     </ul>
   </div>
 
-  <div class="level-grid">
-    <div class="level-card hard" style="background:rgba(17,138,178,0.05); border-color:rgba(17,138,178,0.25);">
-      <div class="level-label" style="color:var(--accent4);">📋 1. Formal Template</div>
+  <details>
+    <summary>📋 1. Formal Template</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-rts-formal">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-rts-formal"></span></div>
         <p><strong>Greeting:</strong> Dear <span class="fill">Name/Sir/Madam</span>,</p>
@@ -581,9 +595,11 @@
         <button class="mark-btn" id="btn-tpl-rts-formal" onclick="markStudied('tpl-rts-formal')">Mark as Studied</button>
       </div>
     </div>
+  </details>
 
-    <div class="level-card medium">
-      <div class="level-label">💬 2. Semi-formal Template</div>
+  <details>
+    <summary>💬 2. Semi-formal Template</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-rts-semi">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-rts-semi"></span></div>
         <p><strong>Greeting:</strong> Hello <span class="fill">Name</span>,</p>
@@ -598,9 +614,11 @@
         <button class="mark-btn" id="btn-tpl-rts-semi" onclick="markStudied('tpl-rts-semi')">Mark as Studied</button>
       </div>
     </div>
+  </details>
 
-    <div class="level-card easy">
-      <div class="level-label">🤙 3. Informal Template</div>
+  <details>
+    <summary>🤙 3. Informal Template</summary>
+    <div class="details-body">
       <div class="template-block" id="tpl-rts-informal">
         <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-rts-informal"></span></div>
         <p><strong>Greeting:</strong> Hi <span class="fill">Name</span>,</p>
@@ -615,7 +633,7 @@
         <button class="mark-btn" id="btn-tpl-rts-informal" onclick="markStudied('tpl-rts-informal')">Mark as Studied</button>
       </div>
     </div>
-  </div>
+  </details>
 </div>
 
 <!-- ===== SUMMARISE SPOKEN TEXT ===== -->
@@ -648,8 +666,9 @@
     </table>
   </div>
 
-  <div class="card">
-    <div class="card-title">✍️ Primary Format Template <span class="chip chip-orange">IDEAL: 60–65 words</span></div>
+  <details>
+    <summary>✍️ Primary Format Template <span class="chip chip-orange" style="margin-left:8px;">IDEAL: 60–65 words</span></summary>
+    <div class="details-body">
     <div class="reminder"><strong>SOMETHING = KEYWORD</strong> &nbsp;|&nbsp; Do + ing = e.g. getting, improving</div>
     <div class="template-block" id="tpl-sst-primary">
       <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-primary"></span></div>
@@ -660,7 +679,12 @@
       <button class="mark-btn" id="btn-tpl-sst-primary" onclick="markStudied('tpl-sst-primary')">Mark as Studied</button>
     </div>
 
-    <div class="card-title" style="margin-top:18px;">🔻 For Negative Topics</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>🔻 For Negative Topics</summary>
+    <div class="details-body">
     <div class="template-block" id="tpl-sst-negative">
       <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-negative"></span></div>
       <p>The talk delineates the effects of <span class="fill">something</span> in affecting <span class="fill">something else</span>. According to the speaker, it is by doing <span class="fill">something</span> not only affects in doing <span class="fill">Task 1</span>, but also affects in doing <span class="fill">Task 2</span>. Hence, the role of <span class="fill">something</span> in affecting <span class="fill">something</span> is instrumental indeed.</p>
@@ -669,8 +693,12 @@
       <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-negative')" style="display:none" id="unbtn-tpl-sst-negative">✕ Unmark</button>
       <button class="mark-btn" id="btn-tpl-sst-negative" onclick="markStudied('tpl-sst-negative')">Mark as Studied</button>
     </div>
+    </div>
+  </details>
 
-    <div class="card-title" style="margin-top:18px;">📘 Completed Example</div>
+  <details>
+    <summary>📘 Completed Example</summary>
+    <div class="details-body">
     <div class="template-block" style="background:rgba(6,214,160,0.05); border-color:rgba(6,214,160,0.2);" id="tpl-sst-example">
       <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-example"></span></div>
       <p style="color:var(--text);">The talk delineates the importance of <span class="fill fill-green">qualitative research</span> in understanding the <span class="fill fill-green">relationship between teacher attitude and student performance</span>. According to the speaker, it is by <span class="fill fill-green">conducting a national experiment</span> not only helps in <span class="fill fill-green">showing the sizeable impact on students</span>, but also helps in <span class="fill fill-green">evaluating their score performance</span>. Hence, the role of <span class="fill fill-green">experiment</span> in finding the results of teacher attitude on student's performance is instrumental indeed. (65 Words)</p>
@@ -679,10 +707,12 @@
       <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-example')" style="display:none" id="unbtn-tpl-sst-example">✕ Unmark</button>
       <button class="mark-btn" id="btn-tpl-sst-example" onclick="markStudied('tpl-sst-example')">Mark as Studied</button>
     </div>
-  </div>
+    </div>
+  </details>
 
-  <div class="card">
-    <div class="card-title">📋 Alternative Format (For 6 Each)</div>
+  <details>
+    <summary>📋 Alternative Format (For 6 Each)</summary>
+    <div class="details-body">
     <div class="template-block" id="tpl-sst-alt">
       <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-alt"></span></div>
       <p>The lecture highlighted about <span class="fill">CONTENT</span> and <span class="fill">CONTENT</span>. The lecturer further introduced about <span class="fill">CONTENT 2</span> as well as <span class="fill">CONTENT 3</span>. Firstly, s/he pointed about <span class="fill">CONTENT 4</span>. However, the impacts of <span class="fill">CONTENT 4</span> are really crucial for the society. Secondly, s/he mentioned about <span class="fill">CONTENT 5</span>. Overall, it can be concluded that impacts of <span class="fill">CONTENT</span> is/are very important in the future.</p>
@@ -691,7 +721,9 @@
       <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-alt')" style="display:none" id="unbtn-tpl-sst-alt">✕ Unmark</button>
       <button class="mark-btn" id="btn-tpl-sst-alt" onclick="markStudied('tpl-sst-alt')">Mark as Studied</button>
     </div>
-  </div>
+    </div>
+  </details>
+
 </div>
 
 <!-- ===== WRITE ESSAY ===== -->
@@ -718,8 +750,9 @@
     </table>
   </div>
 
-  <div class="card">
-    <div class="card-title">🏆 Universal Essay Template <span class="chip chip-orange">79+ Target</span></div>
+  <details>
+    <summary>🏆 Universal Essay Template <span class="chip chip-orange" style="margin-left:8px;">79+ Target</span></summary>
+    <div class="details-body">
 
     <div class="reminder" style="margin-bottom:18px;">
       <strong>⚠️ Important (Aug 2025 update):</strong> Human reviewers now check essay content for originality. The structure below is safe — but every <span style="color:var(--accent2); font-style:italic;">[TOPIC]</span>, <span style="color:var(--accent2); font-style:italic;">[VIEW 1]</span>, <span style="color:var(--accent2); font-style:italic;">[VIEW 2]</span> must be replaced with your own specific ideas. Generic fillers like "societal development" and "quality of life" without specific examples will lower your content score.
@@ -808,11 +841,12 @@
       <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-full')" style="display:none" id="unbtn-tpl-essay-full">✕ Unmark</button>
       <button class="mark-btn" id="btn-tpl-essay-full" onclick="markStudied('tpl-essay-full')">Mark as Studied</button>
     </div>
-  </div>
+    </div>
+  </details>
 
-  <!-- TIPS -->
-  <div class="card">
-    <div class="card-title">💡 Essay Writing Tips <span class="chip chip-blue">Score Boosters</span></div>
+  <details>
+    <summary>💡 Essay Writing Tips <span class="chip chip-blue" style="margin-left:8px;">Score Boosters</span></summary>
+    <div class="details-body">
     <ul class="tip-list">
       <li data-n="1"><strong>Word count:</strong> Stay between 250–270 words. Under 200 = automatic mark deduction. Over 300 = no bonus, just more chances for errors.</li>
       <li data-n="2"><strong>Specific examples:</strong> Replace "many countries" with a real one: "countries like Finland", "sectors such as healthcare". Specificity raises your content score from 3 to 5+.</li>
@@ -821,7 +855,8 @@
       <li data-n="5"><strong>Connectors to vary:</strong> Besides "Furthermore" and "Consequently", also use: "Moreover", "In contrast", "Nevertheless", "As a result", "Despite this".</li>
       <li data-n="6"><strong>Never leave a body paragraph with only generic examples.</strong> "Various sectors" is not an example — it's a placeholder. Name at least one real context per paragraph.</li>
     </ul>
-  </div>
+    </div>
+  </details>
 
 </div>
 
