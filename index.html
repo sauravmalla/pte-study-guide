@@ -21,7 +21,6 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-  /* Hero */
   .hero { background: linear-gradient(135deg, #0f0e17 0%, #1a1928 50%, #0f1a2e 100%); padding: 60px 30px 40px; text-align: center; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,107,53,0.12) 0%, transparent 70%); top: -200px; left: 50%; transform: translateX(-50%); pointer-events: none; }
   .badge { display: inline-block; background: rgba(255,107,53,0.15); color: var(--accent); border: 1px solid rgba(255,107,53,0.3); padding: 5px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
@@ -30,23 +29,17 @@
   .hero p { color: var(--muted); font-size: 1rem; max-width: 500px; margin: 0 auto 30px; }
   .score-tag { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(90deg, var(--accent), var(--accent2)); color: #000; font-weight: 700; font-size: 14px; padding: 8px 20px; border-radius: 30px; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,107,53,0.4); } 50% { box-shadow: 0 0 0 12px rgba(255,107,53,0); } }
-
-  /* Progress bar in hero */
   .progress-hero { margin-top: 24px; max-width: 340px; margin-left: auto; margin-right: auto; }
   .progress-hero-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
   .progress-bar-outer { background: var(--border); border-radius: 20px; height: 8px; overflow: hidden; }
   .progress-bar-inner { height: 100%; background: linear-gradient(90deg, var(--accent3), var(--accent2)); border-radius: 20px; transition: width 0.5s ease; }
 
-  /* Nav */
   nav { display: flex; overflow-x: auto; gap: 4px; padding: 16px 20px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; scrollbar-width: none; }
   nav::-webkit-scrollbar { display: none; }
-  .tab { flex-shrink: 0; padding: 8px 18px; border-radius: 8px; border: 1px solid transparent; background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; position: relative; }
+  .tab { flex-shrink: 0; padding: 8px 18px; border-radius: 8px; border: 1px solid transparent; background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
   .tab:hover { color: var(--text); background: var(--card); }
   .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
-  .tab-dot { position: absolute; top: 4px; right: 4px; width: 8px; height: 8px; background: var(--accent3); border-radius: 50%; display: none; }
-  .tab-dot.show { display: block; }
 
-  /* Main */
   main { max-width: 900px; margin: 0 auto; padding: 30px 20px 60px; }
   .section { display: none; animation: fadeUp 0.35s ease; }
   .section.active { display: block; }
@@ -56,7 +49,6 @@
   .sec-title span { color: var(--accent); }
   .sec-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 28px; }
 
-  /* Cards */
   .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 20px; transition: border-color 0.2s; }
   .card:hover { border-color: rgba(255,107,53,0.3); }
   .card-title { font-weight: 700; font-size: 1rem; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -66,62 +58,58 @@
   .chip-yellow { background: rgba(255,209,102,0.15); color: var(--accent2); }
   .chip-blue { background: rgba(17,138,178,0.2); color: var(--accent4); }
 
-  /* Template block with study tracking */
-  .trackable { position: relative; }
+  /* ── AUDIO PLAYER ── */
+  .audio-bar {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(6,214,160,0.06); border: 1px solid rgba(6,214,160,0.2);
+    border-radius: 10px; padding: 10px 14px; margin-top: 12px;
+  }
+  .audio-play-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent3); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform 0.15s, background 0.15s;
+    font-size: 13px; color: #000;
+  }
+  .audio-play-btn:hover { transform: scale(1.1); background: #04c090; }
+  .audio-play-btn.playing { background: var(--accent2); }
+  .audio-progress-wrap { flex: 1; }
+  .audio-progress-bar { width: 100%; height: 4px; border-radius: 99px; background: var(--border); appearance: none; cursor: pointer; outline: none; }
+  .audio-progress-bar::-webkit-slider-thumb { appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent3); cursor: pointer; }
+  .audio-progress-bar::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--accent3); border: none; cursor: pointer; }
+  .audio-time { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .audio-label { font-size: 10px; color: var(--accent3); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .audio-speed-btn { font-size: 10px; background: var(--border); color: var(--muted); border: none; border-radius: 5px; padding: 3px 7px; cursor: pointer; font-family: 'DM Mono', monospace; }
+  .audio-speed-btn:hover { color: var(--text); }
+
   .template-block { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 14px; font-size: 0.9rem; line-height: 1.9; position: relative; transition: all 0.3s; color: #e8e8f0; }
   .template-block p { margin-bottom: 6px; }
   .template-block.studied { border-color: var(--accent3); background: rgba(6,214,160,0.04); }
-
-  /* Studied overlay badge */
   .studied-badge { display: none; position: absolute; top: 10px; right: 10px; background: var(--accent3); color: #000; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 1px; }
   .template-block.studied .studied-badge { display: flex; align-items: center; gap: 5px; }
   .studied-date { font-size: 10px; color: rgba(0,0,0,0.6); }
-
-  /* Mark studied button */
   .mark-btn-row { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 10px; }
-  .mark-btn {
-    display: flex; align-items: center; gap: 6px;
-    padding: 7px 16px; border-radius: 8px; border: 1px solid var(--border);
-    background: var(--card); color: var(--muted);
-    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;
-  }
+  .mark-btn { display: flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px; }
   .mark-btn:hover { border-color: var(--accent3); color: var(--accent3); background: rgba(6,214,160,0.08); }
   .mark-btn.done { background: rgba(6,214,160,0.15); color: var(--accent3); border-color: var(--accent3); }
   .mark-btn.done::before { content: '✓ '; }
   .unmark-btn { font-size: 11px; color: var(--muted); background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; opacity: 0.6; }
   .unmark-btn:hover { opacity: 1; color: var(--accent); }
-
   .fill { background: rgba(255,107,53,0.18); color: var(--accent2); padding: 1px 6px; border-radius: 4px; font-style: italic; font-size: 0.85em; border: 1px dashed rgba(255,107,53,0.4); }
   .fill-green { background: rgba(6,214,160,0.12); color: var(--accent3); border-color: rgba(6,214,160,0.3); }
-
   .tip-list { list-style: none; }
   .tip-list li { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; font-size: 0.9rem; color: #e8e8f0; line-height: 1.6; }
   .tip-list li:last-child { border: none; }
   .tip-list li::before { content: attr(data-n); background: var(--accent); color: #fff; font-weight: 700; font-size: 11px; min-width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
   .tip-list li strong { color: var(--text); }
-
   .score-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
   .score-table th { text-align: left; padding: 10px 14px; background: rgba(255,107,53,0.1); color: var(--accent); font-weight: 600; font-size: 12px; letter-spacing: 1px; }
   .score-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: #e8e8f0; }
   .score-table tr:last-child td { border: none; }
   .score-table td:last-child { text-align: right; font-family: 'DM Mono', monospace; color: var(--accent2); font-weight: 600; }
-
-  .level-grid { display: grid; gap: 16px; }
-  .level-card { border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
-  .level-card.easy { background: rgba(6,214,160,0.05); border-color: rgba(6,214,160,0.2); }
-  .level-card.medium { background: rgba(255,209,102,0.05); border-color: rgba(255,209,102,0.2); }
-  .level-card.hard { background: rgba(255,107,53,0.05); border-color: rgba(255,107,53,0.3); }
-  .level-label { font-weight: 700; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; }
-  .level-card.easy .level-label { color: var(--accent3); }
-  .level-card.medium .level-label { color: var(--accent2); }
-  .level-card.hard .level-label { color: var(--accent); }
-
   .reminder { background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,107,53,0.05)); border: 1px solid rgba(255,107,53,0.35); border-left: 4px solid var(--accent); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
   .reminder strong { color: var(--accent); }
-
   .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-
   details { margin-bottom: 12px; }
   summary { cursor: pointer; padding: 14px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; list-style: none; transition: background 0.2s; }
   summary::-webkit-details-marker { display: none; }
@@ -130,27 +118,7 @@
   details[open] summary { background: var(--surface); border-color: rgba(255,107,53,0.3); }
   .details-body { padding: 18px; background: var(--bg); border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; font-size: 0.9rem; line-height: 1.8; color: #e8e8f0; }
 
-  /* Overall progress panel */
-  .progress-panel { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 24px; }
-  .progress-panel h3 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
-  .progress-row-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.85rem; }
-  .prow-label { color: var(--muted); min-width: 160px; }
-  .prow-bar-outer { flex: 1; background: var(--border); border-radius: 20px; height: 6px; overflow: hidden; }
-  .prow-bar-inner { height: 100%; background: var(--accent3); border-radius: 20px; transition: width 0.4s; }
-  .prow-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent3); min-width: 36px; text-align: right; }
-
-  /* Toast */
-  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--accent3); color: #000; font-weight: 600; font-size: 13px; padding: 10px 22px; border-radius: 30px; z-index: 999; transition: transform 0.3s ease; pointer-events: none; }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  @media(max-width:600px) {
-    .hero { padding: 40px 16px 28px; }
-    main { padding: 20px 14px 50px; }
-    .sec-title { font-size: 1.4rem; }
-    .prow-label { min-width: 120px; }
-  }
-
-  /* ── 10-Day Planner styles ── */
+  /* ── PLANNER ── */
   .planner-header { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; margin-bottom: 20px; }
   .planner-progress-wrap { background: var(--border); border-radius: 99px; height: 8px; margin: 12px 0 8px; overflow: hidden; }
   .planner-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent3), var(--accent2)); border-radius: 99px; transition: width 0.5s ease; width: 0%; }
@@ -170,6 +138,7 @@
   .plt-practice { background: rgba(255,107,53,0.15); color: var(--accent); }
   .plt-review   { background: rgba(6,214,160,0.15);  color: var(--accent3); }
   .plt-fixed    { background: var(--border); color: var(--muted); }
+
   .day-planner-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.2s; }
   .day-planner-card.pl-all-done { border-color: var(--accent3); }
   .day-planner-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; cursor: pointer; user-select: none; gap: 10px; }
@@ -185,9 +154,20 @@
   .dph-title { font-weight: 600; font-size: 14px; }
   .dph-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
   .dph-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-  .pl-ring-wrap { width: 34px; height: 34px; }
-  .pl-ring-bg { fill: none; stroke: var(--border); stroke-width: 3; }
-  .pl-ring-fill { fill: none; stroke: var(--accent3); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 88; stroke-dashoffset: 88; transition: stroke-dashoffset 0.5s ease; transform-origin: center; transform: rotate(-90deg); }
+
+  /* ── RING (circled area user pointed to) ── */
+  .pl-ring-wrap { width: 38px; height: 38px; position: relative; flex-shrink: 0; }
+  .pl-ring-wrap svg { position: absolute; inset: 0; }
+  .pl-ring-bg   { fill: none; stroke: var(--border); stroke-width: 3.5; }
+  .pl-ring-fill { fill: none; stroke: var(--accent3); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 94.2; stroke-dashoffset: 94.2; transition: stroke-dashoffset 0.5s ease; transform-origin: center; transform: rotate(-90deg); }
+  /* ✔ tick shown when fully done */
+  .pl-ring-tick { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+  .pl-all-done .pl-ring-tick { opacity: 1; }
+  .pl-all-done .pl-ring-fill { stroke: var(--accent3); }
+  /* counter badge inside ring */
+  .pl-ring-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 9px; font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 600; pointer-events: none; transition: opacity 0.2s; }
+  .pl-all-done .pl-ring-label { opacity: 0; }
+
   .pl-chevron { color: var(--muted); font-size: 16px; transition: transform 0.2s; }
   .day-planner-card.pl-collapsed .pl-chevron { transform: rotate(-90deg); }
   .day-planner-body { padding: 0 20px 18px; }
@@ -196,11 +176,13 @@
   .pl-table th { text-align: left; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); padding: 0 8px 8px; border-bottom: 1px solid var(--border); }
   .pl-table td { padding: 9px 8px; vertical-align: middle; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--muted); }
   .pl-table tr:last-child td { border-bottom: none; }
-  .pl-table tr.pl-row-done td { opacity: 0.4; }
+  .pl-table tr.pl-row-done td { opacity: 0.4; text-decoration: line-through; }
+  .pl-table tr.pl-row-done td .pl-task-name { text-decoration: line-through; }
   .pl-table tr.pl-row-fixed td { background: rgba(255,255,255,0.02); }
   .pl-time { font-size: 11px; color: var(--muted); white-space: nowrap; min-width: 110px; }
   .pl-task-name { font-weight: 600; font-size: 13px; color: var(--text); }
   .pl-task-desc { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+  .pl-qcount { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-family: 'DM Mono', monospace; background: rgba(255,209,102,0.1); color: var(--accent2); border: 1px solid rgba(255,209,102,0.2); border-radius: 5px; padding: 1px 6px; margin-top: 3px; }
   .pl-done-date { display: none; font-size: 10px; color: var(--accent3); font-weight: 600; margin-top: 3px; }
   .pl-check { width: 28px; text-align: center; }
   .pl-check input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--accent3); cursor: pointer; }
@@ -208,10 +190,16 @@
   textarea.pl-notes { width: 100%; min-height: 60px; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text); background: var(--bg); resize: vertical; outline: none; transition: border-color 0.15s; }
   textarea.pl-notes:focus { border-color: var(--accent3); }
   textarea.pl-notes::placeholder { color: var(--muted); }
-    @media(max-width:520px) {
+
+  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--accent3); color: #000; font-weight: 600; font-size: 13px; padding: 10px 22px; border-radius: 30px; z-index: 999; transition: transform 0.3s ease; pointer-events: none; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media(max-width:600px) {
+    .hero { padding: 40px 16px 28px; }
+    main { padding: 20px 14px 50px; }
+    .sec-title { font-size: 1.4rem; }
     .pl-time { font-size: 10px; min-width: 80px; }
     .pl-task-name { font-size: 12px; }
-    .pl-task-desc { font-size: 10px; }
   }
 </style>
 </head>
@@ -233,31 +221,23 @@
   </div>
 </div>
 
-
-
-
 <div style="padding:12px 20px;background:#1a1928;border-bottom:1px solid #2e2d4a;display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-<button class="tab active master-tab" onclick="showGroup('timetable',this)">📅 Timetable</button>
-<button class="tab master-tab" onclick="showGroup('speaking',this)">🎤 Speaking</button>
-<button class="tab master-tab" onclick="showGroup('writing',this)">✍️ Writing</button>
-<button class="tab master-tab" onclick="showGroup('reading',this)">📖 Reading</button>
-<button class="tab master-tab" onclick="showGroup('listening',this)">🎧 Listening</button>
+  <button class="tab active master-tab" onclick="showGroup('timetable',this)">📅 Timetable</button>
+  <button class="tab master-tab" onclick="showGroup('speaking',this)">🎤 Speaking</button>
+  <button class="tab master-tab" onclick="showGroup('writing',this)">✍️ Writing</button>
+  <button class="tab master-tab" onclick="showGroup('reading',this)">📖 Reading</button>
+  <button class="tab master-tab" onclick="showGroup('listening',this)">🎧 Listening</button>
 </div>
 
 <main>
 
-<!-- Progress panel (shown inside each section) -->
-<div id="progress-panel-container"></div>
-
 <!-- ===== SPEAKING ===== -->
-<div class="section active" id="speaking" data-group="speaking">
+<div class="section" id="speaking" data-group="speaking">
   <div class="sec-title">Speaking <span>Fundamentals</span></div>
   <div class="sec-sub">Getting 90 is a MUST — Focus on these two pillars</div>
-
   <div class="reminder">
     <strong>⚡ Key Rule:</strong> Speaking is marked on <strong>Content</strong>, <strong>Oral Fluency</strong>, and <strong>Pronunciation</strong>. Oral Fluency is the most critical — speaking fluently should be <em>prioritized over Content and Pronunciation</em>.
   </div>
-
   <div class="card">
     <div class="card-title">🌊 A. Oral Fluency <span class="chip chip-orange">Most Important</span></div>
     <ul class="tip-list">
@@ -266,7 +246,6 @@
       <li data-n="✓"><strong>Maintain a natural rhythm</strong> — not too fast, not too slow.</li>
     </ul>
   </div>
-
   <div class="card">
     <div class="card-title">🗣️ B. Pronunciation → Clarity <span class="chip chip-green">Important</span></div>
     <ul class="tip-list">
@@ -274,38 +253,37 @@
       <li data-n="✓">Focus on <strong>word stress</strong> and <strong>intonation</strong> patterns.</li>
     </ul>
   </div>
-
   <hr class="divider">
-
   <details>
     <summary>📖 Read Aloud <span class="chip chip-blue" style="margin-left:8px;">Task Type</span></summary>
     <div class="details-body">
-    <div class="template-block" id="tpl-read-aloud">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-read-aloud"></span></div>
-      <div class="reminder" style="margin-bottom:0;">
-        Read <strong>AS IT IS</strong> — <span style="color:var(--accent)">No Addition, Omission, or Repetition.</span>
+      <div class="template-block" id="tpl-read-aloud">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-read-aloud"></span></div>
+        <div class="reminder" style="margin-bottom:0;">
+          Read <strong>AS IT IS</strong> — <span style="color:var(--accent)">No Addition, Omission, or Repetition.</span>
+        </div>
+      </div>
+      <div id="audio-tpl-read-aloud"></div>
+      <div class="mark-btn-row">
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-read-aloud')" style="display:none" id="unbtn-tpl-read-aloud">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-read-aloud" onclick="markStudied('tpl-read-aloud')">Mark as Studied</button>
       </div>
     </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-read-aloud')" style="display:none" id="unbtn-tpl-read-aloud">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-read-aloud" onclick="markStudied('tpl-read-aloud')">Mark as Studied</button>
-    </div>
-    </div>
   </details>
-
   <details>
     <summary>🔁 Repeat Sentence <span class="chip chip-blue" style="margin-left:8px;">Task Type</span></summary>
     <div class="details-body">
-    <div class="template-block" id="tpl-repeat-sentence">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-repeat-sentence"></span></div>
-      <div class="reminder" style="margin-bottom:0;">
-        Write the <strong>initial of the first half</strong> and speak fluently and clearly. Use the <strong>3-SECOND</strong> rule to capture and recall.
+      <div class="template-block" id="tpl-repeat-sentence">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-repeat-sentence"></span></div>
+        <div class="reminder" style="margin-bottom:0;">
+          Write the <strong>initial of the first half</strong> and speak fluently and clearly. Use the <strong>3-SECOND</strong> rule to capture and recall.
+        </div>
       </div>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-repeat-sentence')" style="display:none" id="unbtn-tpl-repeat-sentence">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-repeat-sentence" onclick="markStudied('tpl-repeat-sentence')">Mark as Studied</button>
-    </div>
+      <div id="audio-tpl-repeat-sentence"></div>
+      <div class="mark-btn-row">
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-repeat-sentence')" style="display:none" id="unbtn-tpl-repeat-sentence">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-repeat-sentence" onclick="markStudied('tpl-repeat-sentence')">Mark as Studied</button>
+      </div>
     </div>
   </details>
 </div>
@@ -314,11 +292,7 @@
 <div class="section" id="describe" data-group="speaking">
   <div class="sec-title">Describe <span>Image</span></div>
   <div class="sec-sub">Universal formats for any image type</div>
-
-  <div class="reminder">
-    <strong>💡 Checklist:</strong> 1) Picture identity / Title &nbsp;2) Quality &nbsp;3) X/Y-axis &nbsp;4) Min/Max value &nbsp;5) Other content &nbsp;6) Colour / Shape &nbsp;7) Conclusion
-  </div>
-
+  <div class="reminder"><strong>💡 Checklist:</strong> 1) Picture identity / Title &nbsp;2) Quality &nbsp;3) X/Y-axis &nbsp;4) Min/Max value &nbsp;5) Other content &nbsp;6) Colour / Shape &nbsp;7) Conclusion</div>
   <details open>
     <summary>🌐 Universal Format (General Images)</summary>
     <div class="details-body">
@@ -332,13 +306,13 @@
         <p>6. Additionally, it highlights <span class="fill">another prominent feature or detail</span>.</p>
         <p>7. Overall, the content in this image is important for understanding <span class="fill">TOPIC</span>.</p>
       </div>
+      <div id="audio-tpl-describe-universal"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-describe-universal')" style="display:none" id="unbtn-tpl-describe-universal">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-describe-universal" onclick="markStudied('tpl-describe-universal')">Mark as Studied</button>
       </div>
     </div>
   </details>
-
   <details>
     <summary>📊 For Graphs (Bar / Line / Scatter)</summary>
     <div class="details-body">
@@ -353,13 +327,13 @@
         <p>7. It also shows <span class="fill">another key data point or comparison</span>.</p>
         <p>8. Overall, the information shown in this graph is crucial for understanding <span class="fill">main Title/Content</span>.</p>
       </div>
+      <div id="audio-tpl-describe-graph"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-describe-graph')" style="display:none" id="unbtn-tpl-describe-graph">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-describe-graph" onclick="markStudied('tpl-describe-graph')">Mark as Studied</button>
       </div>
     </div>
   </details>
-
   <details>
     <summary>📷 For Photographs (Scenic / People / Objects)</summary>
     <div class="details-body">
@@ -374,13 +348,13 @@
         <p>7. Another prominent feature is <span class="fill">an additional detail</span>.</p>
         <p>8. Overall, this image brings an important perspective to the content.</p>
       </div>
+      <div id="audio-tpl-describe-photo"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-describe-photo')" style="display:none" id="unbtn-tpl-describe-photo">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-describe-photo" onclick="markStudied('tpl-describe-photo')">Mark as Studied</button>
       </div>
     </div>
   </details>
-
   <details>
     <summary>🥧 For Pie Charts</summary>
     <div class="details-body">
@@ -395,6 +369,7 @@
         <p>7. It also highlights <span class="fill">additional category or interesting insight</span>.</p>
         <p>8. Overall, the information in this chart is valuable for understanding <span class="fill">topic or societal importance</span>.</p>
       </div>
+      <div id="audio-tpl-describe-pie"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-describe-pie')" style="display:none" id="unbtn-tpl-describe-pie">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-describe-pie" onclick="markStudied('tpl-describe-pie')">Mark as Studied</button>
@@ -407,50 +382,27 @@
 <div class="section" id="retell" data-group="speaking">
   <div class="sec-title">Re-tell <span>Lecture</span></div>
   <div class="sec-sub">Listen → Write 10 keywords → Speak from template</div>
-
   <div class="reminder"><strong>📝 Step 1:</strong> Listen to the audio and write <strong>minimum 10 main keywords</strong> while listening.</div>
-
   <details>
     <summary>📋 Basic Re-tell Template <span class="chip chip-orange" style="margin-left:8px;">Core Format</span></summary>
     <div class="details-body">
-    <div class="template-block" id="tpl-retell-basic">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-retell-basic"></span></div>
-      <p>1. The lecture focused on <span class="fill">main topic</span> and covered several key areas related to it.</p>
-      <p>2. Initially, the speaker introduced <span class="fill">point 1</span>, followed by a discussion on <span class="fill">point 2</span> and <span class="fill">point 3</span>.</p>
-      <p>3. The speaker then expanded on <span class="fill">point 4</span>, explaining its relevance and connection to <span class="fill">related idea or detail</span>.</p>
-      <p>4. Additionally, <span class="fill">point 5</span> and <span class="fill">point 6</span> were discussed, providing further depth to the main topic.</p>
-      <p>5. In the latter part of the lecture, he/she mentioned <span class="fill">additional detail or example</span> to illustrate <span class="fill">another aspect or importance</span>.</p>
-      <p>6. Towards the end, the speaker summarized with a key takeaway, emphasizing <span class="fill">final insight or message</span>.</p>
-      <p>7. Overall, the lecture offered valuable information and insights on the topic.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-retell-basic')" style="display:none" id="unbtn-tpl-retell-basic">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-retell-basic" onclick="markStudied('tpl-retell-basic')">Mark as Studied</button>
-    </div>
-    </div>
-  </details>
-
-  <details>
-    <summary>✅ Format 1 — Simple English</summary>
-    <div class="details-body">
-      <div class="template-block" id="tpl-retell-simple">
-        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-retell-simple"></span></div>
-        <p>1. The lecture highlighted about <span class="fill">main topic</span> and <span class="fill">secondary topic</span>.</p>
-        <p>2. First, the speaker mentioned about <span class="fill">point 1</span>, <span class="fill">point 2</span>, and <span class="fill">point 3</span>.</p>
-        <p>3. Then, he mentioned <span class="fill">point 4</span>, <span class="fill">point 5</span>, and <span class="fill">point 6</span>.</p>
-        <p>4. After that, he discussed <span class="fill">point 7</span>, <span class="fill">point 8</span>, and <span class="fill">point 9</span>.</p>
-        <p>5. He also mentioned about <span class="fill">additional detail 1</span>, <span class="fill">detail 2</span>, and <span class="fill">detail 3</span>.</p>
-        <p>6. Next, he explained <span class="fill">another idea</span> and how it connects to the main topic.</p>
-        <p>7. Lastly, he shared some examples or facts about <span class="fill">relevant example or fact</span>.</p>
-        <p>8. Overall, the lecture was very informative and gave useful details about the topic.</p>
+      <div class="template-block" id="tpl-retell-basic">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-retell-basic"></span></div>
+        <p>1. The lecture focused on <span class="fill">main topic</span> and covered several key areas related to it.</p>
+        <p>2. Initially, the speaker introduced <span class="fill">point 1</span>, followed by a discussion on <span class="fill">point 2</span> and <span class="fill">point 3</span>.</p>
+        <p>3. The speaker then expanded on <span class="fill">point 4</span>, explaining its relevance and connection to <span class="fill">related idea or detail</span>.</p>
+        <p>4. Additionally, <span class="fill">point 5</span> and <span class="fill">point 6</span> were discussed, providing further depth to the main topic.</p>
+        <p>5. In the latter part of the lecture, he/she mentioned <span class="fill">additional detail or example</span> to illustrate <span class="fill">another aspect or importance</span>.</p>
+        <p>6. Towards the end, the speaker summarized with a key takeaway, emphasizing <span class="fill">final insight or message</span>.</p>
+        <p>7. Overall, the lecture offered valuable information and insights on the topic.</p>
       </div>
+      <div id="audio-tpl-retell-basic"></div>
       <div class="mark-btn-row">
-        <button class="unmark-btn" onclick="unmarkStudied('tpl-retell-simple')" style="display:none" id="unbtn-tpl-retell-simple">✕ Unmark</button>
-        <button class="mark-btn" id="btn-tpl-retell-simple" onclick="markStudied('tpl-retell-simple')">Mark as Studied</button>
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-retell-basic')" style="display:none" id="unbtn-tpl-retell-basic">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-retell-basic" onclick="markStudied('tpl-retell-basic')">Mark as Studied</button>
       </div>
     </div>
   </details>
-
   <details>
     <summary>⭐ Format 2 — Intermediate English → USE THIS</summary>
     <div class="details-body">
@@ -465,13 +417,13 @@
         <p>7. In the final part of the lecture, he summed up with key insights on <span class="fill">summary point</span>.</p>
         <p>8. In conclusion, this lecture presented valuable insights and detailed information on the subject.</p>
       </div>
+      <div id="audio-tpl-retell-inter"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-retell-inter')" style="display:none" id="unbtn-tpl-retell-inter">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-retell-inter" onclick="markStudied('tpl-retell-inter')">Mark as Studied</button>
       </div>
     </div>
   </details>
-
   <details>
     <summary>🔥 Format 3 — Advanced English → USE THIS</summary>
     <div class="details-body">
@@ -486,6 +438,7 @@
         <p>7. Towards the end, he synthesized the information with concluding points on <span class="fill">summary insight</span>.</p>
         <p>8. Overall, this lecture was highly informative, offering a comprehensive analysis and insightful perspectives on the topic.</p>
       </div>
+      <div id="audio-tpl-retell-adv"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-retell-adv')" style="display:none" id="unbtn-tpl-retell-adv">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-retell-adv" onclick="markStudied('tpl-retell-adv')">Mark as Studied</button>
@@ -494,11 +447,10 @@
   </details>
 </div>
 
-<!-- ===== SUMMARIZE GROUP DISCUSSION ===== -->
+<!-- ===== SGD ===== -->
 <div class="section" id="sgd" data-group="speaking">
   <div class="sec-title">Summarize Group <span>Discussion</span></div>
   <div class="sec-sub">Listen, divide into 3 speakers, note main ideas</div>
-
   <div class="card">
     <div class="card-title">📌 Steps to Follow <span class="chip chip-green">Process</span></div>
     <ul class="tip-list">
@@ -508,43 +460,6 @@
       <li data-n="4"><strong>Highlight the main keywords</strong> you will use.</li>
     </ul>
   </div>
-
-  <details>
-    <summary>✅ Easy Level — Beginner English</summary>
-    <div class="details-body">
-      <div class="template-block" id="tpl-sgd-easy">
-        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sgd-easy"></span></div>
-        <p>The discussion was about <span class="fill">main topic</span>.</p>
-        <p>The first speaker mentioned about <span class="fill">point 1</span>. They also said <span class="fill">point 2</span>, and added <span class="fill">point 3</span>.</p>
-        <p>Then, the second speaker mentioned about <span class="fill">point 1</span>. They also spoke about <span class="fill">point 2</span> and <span class="fill">point 3</span>.</p>
-        <p>The third speaker shared about <span class="fill">point 1</span>. They also said <span class="fill">point 2</span>, and talked about <span class="fill">point 3</span>.</p>
-        <p>In the end, the discussion was about <span class="fill">conclusion point</span>. Overall, it was about <span class="fill">main takeaway 1</span> and <span class="fill">main takeaway 2</span>.</p>
-      </div>
-      <div class="mark-btn-row">
-        <button class="unmark-btn" onclick="unmarkStudied('tpl-sgd-easy')" style="display:none" id="unbtn-tpl-sgd-easy">✕ Unmark</button>
-        <button class="mark-btn" id="btn-tpl-sgd-easy" onclick="markStudied('tpl-sgd-easy')">Mark as Studied</button>
-      </div>
-    </div>
-  </details>
-
-  <details>
-    <summary>⭐ Medium Level — Standard PTE English</summary>
-    <div class="details-body">
-      <div class="template-block" id="tpl-sgd-medium">
-        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sgd-medium"></span></div>
-        <p>The discussion was mainly about <span class="fill">main topic</span>.</p>
-        <p>The first speaker discussed <span class="fill">point 1</span>. They further mentioned that <span class="fill">point 2</span>, and added that <span class="fill">point 3</span>.</p>
-        <p>After that, the second speaker focused on <span class="fill">point 1</span>. <span class="fill">Point 2</span> was also explained, along with <span class="fill">point 3</span>.</p>
-        <p>The third speaker also talked about <span class="fill">point 1</span>. They gave details about <span class="fill">point 2</span>, and highlighted <span class="fill">point 3</span>.</p>
-        <p>Towards the end, the discussion focused on <span class="fill">conclusion point</span>. Overall, the discussion covered important points about <span class="fill">main takeaway 1</span> and <span class="fill">main takeaway 2</span>.</p>
-      </div>
-      <div class="mark-btn-row">
-        <button class="unmark-btn" onclick="unmarkStudied('tpl-sgd-medium')" style="display:none" id="unbtn-tpl-sgd-medium">✕ Unmark</button>
-        <button class="mark-btn" id="btn-tpl-sgd-medium" onclick="markStudied('tpl-sgd-medium')">Mark as Studied</button>
-      </div>
-    </div>
-  </details>
-
   <details>
     <summary>🔥 Hard Level — Advanced/Fluent English → TRY TO USE THIS!</summary>
     <div class="details-body">
@@ -556,6 +471,7 @@
         <p>The third speaker shared personal views on <span class="fill">point 1</span>, offering specific examples about <span class="fill">point 2</span>, and concluded with thoughts on <span class="fill">point 3</span>.</p>
         <p>As the conversation progressed, it ended by stressing <span class="fill">conclusion idea</span>. Overall, the discussion presented diverse perspectives, particularly focusing on <span class="fill">main takeaway 1</span> and <span class="fill">main takeaway 2</span>.</p>
       </div>
+      <div id="audio-tpl-sgd-hard"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-sgd-hard')" style="display:none" id="unbtn-tpl-sgd-hard">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-sgd-hard" onclick="markStudied('tpl-sgd-hard')">Mark as Studied</button>
@@ -564,11 +480,10 @@
   </details>
 </div>
 
-<!-- ===== RESPOND TO SITUATION ===== -->
+<!-- ===== RTS ===== -->
 <div class="section" id="rts" data-group="speaking">
   <div class="sec-title">Respond to a <span>Situation</span></div>
   <div class="sec-sub">You can see the written prompt — no need to listen to audio</div>
-
   <div class="card">
     <div class="card-title">📌 Steps <span class="chip chip-green">Process</span></div>
     <ul class="tip-list">
@@ -576,10 +491,8 @@
       <li data-n="2">Write down the <strong>solution</strong>.</li>
       <li data-n="3"><strong>Offer 2 Suggestions!!</strong></li>
       <li data-n="4">Conclude with a <strong>closing statement</strong>.</li>
-      <li data-n="5">You can <strong>see the written Prompt</strong> — no need to listen to audio.</li>
     </ul>
   </div>
-
   <details>
     <summary>📋 1. Formal Template</summary>
     <div class="details-body">
@@ -592,57 +505,19 @@
         <p>If required, I am available to <span class="fill">personal offer of assistance</span>.</p>
         <p>I trust these suggestions will help resolve the matter effectively. Thank you.</p>
       </div>
+      <div id="audio-tpl-rts-formal"></div>
       <div class="mark-btn-row">
         <button class="unmark-btn" onclick="unmarkStudied('tpl-rts-formal')" style="display:none" id="unbtn-tpl-rts-formal">✕ Unmark</button>
         <button class="mark-btn" id="btn-tpl-rts-formal" onclick="markStudied('tpl-rts-formal')">Mark as Studied</button>
       </div>
     </div>
   </details>
-
-  <details>
-    <summary>💬 2. Semi-formal Template</summary>
-    <div class="details-body">
-      <div class="template-block" id="tpl-rts-semi">
-        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-rts-semi"></span></div>
-        <p><strong>Greeting:</strong> Hello <span class="fill">Name</span>,</p>
-        <p>I heard about <span class="fill">state the problem</span>, and I think it can be solved by <span class="fill">main solution</span>.</p>
-        <p>This works well because <span class="fill">reason</span>.</p>
-        <p>You might also try <span class="fill">extra suggestion 1</span> and <span class="fill">extra suggestion 2</span> to make it better.</p>
-        <p>If you want, I can <span class="fill">personal help or support</span>.</p>
-        <p>I'm sure these steps will help you. Thanks.</p>
-      </div>
-      <div class="mark-btn-row">
-        <button class="unmark-btn" onclick="unmarkStudied('tpl-rts-semi')" style="display:none" id="unbtn-tpl-rts-semi">✕ Unmark</button>
-        <button class="mark-btn" id="btn-tpl-rts-semi" onclick="markStudied('tpl-rts-semi')">Mark as Studied</button>
-      </div>
-    </div>
-  </details>
-
-  <details>
-    <summary>🤙 3. Informal Template</summary>
-    <div class="details-body">
-      <div class="template-block" id="tpl-rts-informal">
-        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-rts-informal"></span></div>
-        <p><strong>Greeting:</strong> Hi <span class="fill">Name</span>,</p>
-        <p>I know you're <span class="fill">state the problem in casual words</span>.</p>
-        <p>My advice is to <span class="fill">main solution</span> — it really works!</p>
-        <p>You could also <span class="fill">extra suggestion 1</span> and <span class="fill">extra suggestion 2</span> to make things easier.</p>
-        <p>If you need, I can <span class="fill">personal help in casual style</span>.</p>
-        <p>Hope this helps, and good luck!</p>
-      </div>
-      <div class="mark-btn-row">
-        <button class="unmark-btn" onclick="unmarkStudied('tpl-rts-informal')" style="display:none" id="unbtn-tpl-rts-informal">✕ Unmark</button>
-        <button class="mark-btn" id="btn-tpl-rts-informal" onclick="markStudied('tpl-rts-informal')">Mark as Studied</button>
-      </div>
-    </div>
-  </details>
 </div>
 
-<!-- ===== SUMMARISE SPOKEN TEXT ===== -->
+<!-- ===== SST ===== -->
 <div class="section" id="sst" data-group="writing">
   <div class="sec-title">Summarise <span>Spoken Text</span></div>
   <div class="sec-sub">50–70 words | 10 minutes per question</div>
-
   <div class="card">
     <div class="card-title">📌 Steps <span class="chip chip-green">Process</span></div>
     <ul class="tip-list">
@@ -652,388 +527,128 @@
       <li data-n="4"><strong>Proof Read</strong> before submitting.</li>
     </ul>
   </div>
-
-  <div class="card">
-    <div class="card-title">📊 Scoring Breakdown <span class="chip chip-yellow">10 Points Total</span></div>
-    <table class="score-table">
-      <thead><tr><th>Criteria</th><th>Score</th></tr></thead>
-      <tbody>
-        <tr><td>Structure</td><td>2</td></tr>
-        <tr><td>Grammar</td><td>2</td></tr>
-        <tr><td>Vocabulary</td><td>2</td></tr>
-        <tr><td>Spelling</td><td>2</td></tr>
-        <tr><td>Content</td><td>2</td></tr>
-        <tr><td><strong style="color:var(--text)">Total</strong></td><td>10/10</td></tr>
-      </tbody>
-    </table>
-  </div>
-
   <details>
     <summary>✍️ Primary Format Template <span class="chip chip-orange" style="margin-left:8px;">IDEAL: 60–65 words</span></summary>
     <div class="details-body">
-    <div class="reminder"><strong>SOMETHING = KEYWORD</strong> &nbsp;|&nbsp; Do + ing = e.g. getting, improving</div>
-    <div class="template-block" id="tpl-sst-primary">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-primary"></span></div>
-      <p>The talk delineates the importance of <span class="fill">SOMETHING</span> in doing <span class="fill">SOMETHING ELSE</span>. According to the speaker, it is by doing <span class="fill">SOMETHING</span> not only helps in doing <span class="fill">TASK 1</span>, but also helps in doing <span class="fill">TASK 2</span>. Hence, the role of <span class="fill">SOMETHING</span> in doing <span class="fill">SOMETHING ELSE</span> is instrumental indeed.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-primary')" style="display:none" id="unbtn-tpl-sst-primary">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-sst-primary" onclick="markStudied('tpl-sst-primary')">Mark as Studied</button>
-    </div>
-
-    </div>
-  </details>
-
-  <details>
-    <summary>🔻 For Negative Topics</summary>
-    <div class="details-body">
-    <div class="template-block" id="tpl-sst-negative">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-negative"></span></div>
-      <p>The talk delineates the effects of <span class="fill">something</span> in affecting <span class="fill">something else</span>. According to the speaker, it is by doing <span class="fill">something</span> not only affects in doing <span class="fill">Task 1</span>, but also affects in doing <span class="fill">Task 2</span>. Hence, the role of <span class="fill">something</span> in affecting <span class="fill">something</span> is instrumental indeed.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-negative')" style="display:none" id="unbtn-tpl-sst-negative">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-sst-negative" onclick="markStudied('tpl-sst-negative')">Mark as Studied</button>
-    </div>
+      <div class="reminder"><strong>SOMETHING = KEYWORD</strong> &nbsp;|&nbsp; Do + ing = e.g. getting, improving</div>
+      <div class="template-block" id="tpl-sst-primary">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-primary"></span></div>
+        <p>The talk delineates the importance of <span class="fill">SOMETHING</span> in doing <span class="fill">SOMETHING ELSE</span>. According to the speaker, it is by doing <span class="fill">SOMETHING</span> not only helps in doing <span class="fill">TASK 1</span>, but also helps in doing <span class="fill">TASK 2</span>. Hence, the role of <span class="fill">SOMETHING</span> in doing <span class="fill">SOMETHING ELSE</span> is instrumental indeed.</p>
+      </div>
+      <div id="audio-tpl-sst-primary"></div>
+      <div class="mark-btn-row">
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-primary')" style="display:none" id="unbtn-tpl-sst-primary">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-sst-primary" onclick="markStudied('tpl-sst-primary')">Mark as Studied</button>
+      </div>
     </div>
   </details>
-
-  <details>
-    <summary>📘 Completed Example</summary>
-    <div class="details-body">
-    <div class="template-block" style="background:rgba(6,214,160,0.05); border-color:rgba(6,214,160,0.2);" id="tpl-sst-example">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-example"></span></div>
-      <p style="color:var(--text);">The talk delineates the importance of <span class="fill fill-green">qualitative research</span> in understanding the <span class="fill fill-green">relationship between teacher attitude and student performance</span>. According to the speaker, it is by <span class="fill fill-green">conducting a national experiment</span> not only helps in <span class="fill fill-green">showing the sizeable impact on students</span>, but also helps in <span class="fill fill-green">evaluating their score performance</span>. Hence, the role of <span class="fill fill-green">experiment</span> in finding the results of teacher attitude on student's performance is instrumental indeed. (65 Words)</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-example')" style="display:none" id="unbtn-tpl-sst-example">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-sst-example" onclick="markStudied('tpl-sst-example')">Mark as Studied</button>
-    </div>
-    </div>
-  </details>
-
-  <details>
-    <summary>📋 Alternative Format (For 6 Each)</summary>
-    <div class="details-body">
-    <div class="template-block" id="tpl-sst-alt">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-sst-alt"></span></div>
-      <p>The lecture highlighted about <span class="fill">CONTENT</span> and <span class="fill">CONTENT</span>. The lecturer further introduced about <span class="fill">CONTENT 2</span> as well as <span class="fill">CONTENT 3</span>. Firstly, s/he pointed about <span class="fill">CONTENT 4</span>. However, the impacts of <span class="fill">CONTENT 4</span> are really crucial for the society. Secondly, s/he mentioned about <span class="fill">CONTENT 5</span>. Overall, it can be concluded that impacts of <span class="fill">CONTENT</span> is/are very important in the future.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-sst-alt')" style="display:none" id="unbtn-tpl-sst-alt">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-sst-alt" onclick="markStudied('tpl-sst-alt')">Mark as Studied</button>
-    </div>
-    </div>
-  </details>
-
-
 </div>
 
-<!-- ===== WRITE ESSAY ===== -->
+<!-- ===== ESSAY ===== -->
 <div class="section" id="essay" data-group="writing">
   <div class="sec-title">Write <span>Essay</span></div>
   <div class="sec-sub">200–300 words | 20 minutes | Discuss both views + opinion</div>
-
   <div class="reminder">
-    <strong>⚡ Key Facts:</strong> Essay is scored on <strong>Content, Development &amp; Structure, Grammar, Vocabulary, Spelling</strong> — each trait rated 0–6 (updated Aug 2025). Human reviewers also check content originality. Aim for <strong>250–270 words</strong> — under 200 loses marks automatically.
+    <strong>⚡ Key Facts:</strong> Essay is scored on <strong>Content, Development &amp; Structure, Grammar, Vocabulary, Spelling</strong>. Aim for <strong>250–270 words</strong> — under 200 loses marks automatically.
   </div>
-
-  <div class="card">
-    <div class="card-title">📊 Essay Scoring Breakdown <span class="chip chip-yellow">6 per trait</span></div>
-    <table class="score-table">
-      <thead><tr><th>Criteria</th><th>Max Score</th></tr></thead>
-      <tbody>
-        <tr><td>Content (relevance, task coverage)</td><td>6</td></tr>
-        <tr><td>Development, Structure &amp; Coherence</td><td>6</td></tr>
-        <tr><td>General Linguistic Range (Grammar)</td><td>6</td></tr>
-        <tr><td>Vocabulary Range &amp; Choice</td><td>6</td></tr>
-        <tr><td>Spelling</td><td>6</td></tr>
-        <tr><td><strong style="color:var(--text)">Total</strong></td><td>30</td></tr>
-      </tbody>
-    </table>
-  </div>
-
   <details>
     <summary>🏆 Universal Essay Template <span class="chip chip-orange" style="margin-left:8px;">79+ Target</span></summary>
     <div class="details-body">
-
-    <div class="reminder" style="margin-bottom:18px;">
-      <strong>⚠️ Important (Aug 2025 update):</strong> Human reviewers now check essay content for originality. The structure below is safe — but every <span style="color:var(--accent2); font-style:italic;">[TOPIC]</span>, <span style="color:var(--accent2); font-style:italic;">[VIEW 1]</span>, <span style="color:var(--accent2); font-style:italic;">[VIEW 2]</span> must be replaced with your own specific ideas. Generic fillers like "societal development" and "quality of life" without specific examples will lower your content score.
-    </div>
-
-    <!-- INTRODUCTION -->
-    <div class="card-title" style="margin-top:4px;">📌 Introduction</div>
-    <div class="template-block" id="tpl-essay-intro">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-intro"></span></div>
-      <p>1. In today's rapidly changing world, the issue of <span class="fill">TOPIC</span> has attracted significant attention.</p>
-      <p>2. While some people believe that <span class="fill">VIEW 1</span>, others argue that <span class="fill">VIEW 2</span>.</p>
-      <p>3. This essay will discuss both perspectives before presenting a reasoned conclusion.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-intro')" style="display:none" id="unbtn-tpl-essay-intro">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-essay-intro" onclick="markStudied('tpl-essay-intro')">Mark as Studied</button>
-    </div>
-
-    <hr class="divider">
-
-    <!-- BODY 1 -->
-    <div class="card-title">📌 Body Paragraph 1 — Advantages / First View</div>
-    <div class="template-block" id="tpl-essay-body1">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-body1"></span></div>
-      <p>1. On the one hand, there are several advantages associated with <span class="fill">TOPIC</span>.</p>
-      <p>2. Firstly, it can contribute to individual and societal development.</p>
-      <p>3. Secondly, it often improves efficiency, productivity, and overall quality of life.</p>
-      <p>4. For example, many countries and organizations have successfully implemented such approaches and achieved positive outcomes.</p>
-      <p>5. Therefore, these benefits cannot be overlooked.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-body1')" style="display:none" id="unbtn-tpl-essay-body1">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-essay-body1" onclick="markStudied('tpl-essay-body1')">Mark as Studied</button>
-    </div>
-
-    <hr class="divider">
-
-    <!-- BODY 2 -->
-    <div class="card-title">📌 Body Paragraph 2 — Disadvantages / Second View</div>
-    <div class="template-block" id="tpl-essay-body2">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-body2"></span></div>
-      <p>1. On the other hand, certain drawbacks should also be considered.</p>
-      <p>2. One major concern is that it may create social, economic, or environmental challenges.</p>
-      <p>3. Furthermore, improper implementation can lead to unintended negative consequences.</p>
-      <p>4. For instance, various sectors have experienced difficulties when adequate planning and regulation were absent.</p>
-      <p>5. Consequently, these issues deserve careful attention.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-body2')" style="display:none" id="unbtn-tpl-essay-body2">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-essay-body2" onclick="markStudied('tpl-essay-body2')">Mark as Studied</button>
-    </div>
-
-    <hr class="divider">
-
-    <!-- CONCLUSION -->
-    <div class="card-title">📌 Conclusion</div>
-    <div class="template-block" id="tpl-essay-conclusion">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-conclusion"></span></div>
-      <p>1. In conclusion, although <span class="fill">TOPIC</span> presents some disadvantages, its benefits are generally more significant when managed effectively.</p>
-      <p>2. In my opinion, a balanced approach is essential to maximize advantages while minimizing potential drawbacks.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-conclusion')" style="display:none" id="unbtn-tpl-essay-conclusion">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-essay-conclusion" onclick="markStudied('tpl-essay-conclusion')">Mark as Studied</button>
-    </div>
-  </div>
-
-  <!-- FULL ASSEMBLED TEMPLATE -->
-  <div class="card">
-    <div class="card-title">📄 Full Essay — Assembled View <span class="chip chip-green">Read as one piece</span></div>
-    <div class="template-block" id="tpl-essay-full">
-      <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-full"></span></div>
-      <p style="color:var(--accent2); font-size:0.8rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">— INTRODUCTION —</p>
-      <p>In today's rapidly changing world, the issue of <span class="fill">TOPIC</span> has attracted significant attention. While some people believe that <span class="fill">VIEW 1</span>, others argue that <span class="fill">VIEW 2</span>. This essay will discuss both perspectives before presenting a reasoned conclusion.</p>
-      <br>
-      <p style="color:var(--accent2); font-size:0.8rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">— BODY PARAGRAPH 1 —</p>
-      <p>On the one hand, there are several advantages associated with <span class="fill">TOPIC</span>. Firstly, it can contribute to individual and societal development. Secondly, it often improves efficiency, productivity, and overall quality of life. For example, many countries and organizations have successfully implemented such approaches and achieved positive outcomes. Therefore, these benefits cannot be overlooked.</p>
-      <br>
-      <p style="color:var(--accent2); font-size:0.8rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">— BODY PARAGRAPH 2 —</p>
-      <p>On the other hand, certain drawbacks should also be considered. One major concern is that it may create social, economic, or environmental challenges. Furthermore, improper implementation can lead to unintended negative consequences. For instance, various sectors have experienced difficulties when adequate planning and regulation were absent. Consequently, these issues deserve careful attention.</p>
-      <br>
-      <p style="color:var(--accent2); font-size:0.8rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">— CONCLUSION —</p>
-      <p>In conclusion, although <span class="fill">TOPIC</span> presents some disadvantages, its benefits are generally more significant when managed effectively. In my opinion, a balanced approach is essential to maximize advantages while minimizing potential drawbacks.</p>
-    </div>
-    <div class="mark-btn-row">
-      <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-full')" style="display:none" id="unbtn-tpl-essay-full">✕ Unmark</button>
-      <button class="mark-btn" id="btn-tpl-essay-full" onclick="markStudied('tpl-essay-full')">Mark as Studied</button>
-    </div>
+      <div class="card-title" style="margin-top:4px;">📌 Introduction</div>
+      <div class="template-block" id="tpl-essay-intro">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-intro"></span></div>
+        <p>1. In today's rapidly changing world, the issue of <span class="fill">TOPIC</span> has attracted significant attention.</p>
+        <p>2. While some people believe that <span class="fill">VIEW 1</span>, others argue that <span class="fill">VIEW 2</span>.</p>
+        <p>3. This essay will discuss both perspectives before presenting a reasoned conclusion.</p>
+      </div>
+      <div id="audio-tpl-essay-intro"></div>
+      <div class="mark-btn-row">
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-intro')" style="display:none" id="unbtn-tpl-essay-intro">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-essay-intro" onclick="markStudied('tpl-essay-intro')">Mark as Studied</button>
+      </div>
+      <hr class="divider">
+      <div class="card-title">📌 Body Paragraph 1 — Advantages</div>
+      <div class="template-block" id="tpl-essay-body1">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-body1"></span></div>
+        <p>1. On the one hand, there are several advantages associated with <span class="fill">TOPIC</span>.</p>
+        <p>2. Firstly, it can contribute to individual and societal development.</p>
+        <p>3. Secondly, it often improves efficiency, productivity, and overall quality of life.</p>
+        <p>4. For example, many countries and organizations have successfully implemented such approaches and achieved positive outcomes.</p>
+        <p>5. Therefore, these benefits cannot be overlooked.</p>
+      </div>
+      <div id="audio-tpl-essay-body1"></div>
+      <div class="mark-btn-row">
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-body1')" style="display:none" id="unbtn-tpl-essay-body1">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-essay-body1" onclick="markStudied('tpl-essay-body1')">Mark as Studied</button>
+      </div>
+      <hr class="divider">
+      <div class="card-title">📌 Body Paragraph 2 — Disadvantages</div>
+      <div class="template-block" id="tpl-essay-body2">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-body2"></span></div>
+        <p>1. On the other hand, certain drawbacks should also be considered.</p>
+        <p>2. One major concern is that it may create social, economic, or environmental challenges.</p>
+        <p>3. Furthermore, improper implementation can lead to unintended negative consequences.</p>
+        <p>4. For instance, various sectors have experienced difficulties when adequate planning and regulation were absent.</p>
+        <p>5. Consequently, these issues deserve careful attention.</p>
+      </div>
+      <div id="audio-tpl-essay-body2"></div>
+      <div class="mark-btn-row">
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-body2')" style="display:none" id="unbtn-tpl-essay-body2">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-essay-body2" onclick="markStudied('tpl-essay-body2')">Mark as Studied</button>
+      </div>
+      <hr class="divider">
+      <div class="card-title">📌 Conclusion</div>
+      <div class="template-block" id="tpl-essay-conclusion">
+        <div class="studied-badge">✅ STUDIED <span class="studied-date" id="date-tpl-essay-conclusion"></span></div>
+        <p>1. In conclusion, although <span class="fill">TOPIC</span> presents some disadvantages, its benefits are generally more significant when managed effectively.</p>
+        <p>2. In my opinion, a balanced approach is essential to maximize advantages while minimizing potential drawbacks.</p>
+      </div>
+      <div id="audio-tpl-essay-conclusion"></div>
+      <div class="mark-btn-row">
+        <button class="unmark-btn" onclick="unmarkStudied('tpl-essay-conclusion')" style="display:none" id="unbtn-tpl-essay-conclusion">✕ Unmark</button>
+        <button class="mark-btn" id="btn-tpl-essay-conclusion" onclick="markStudied('tpl-essay-conclusion')">Mark as Studied</button>
+      </div>
     </div>
   </details>
-
-  <details>
-    <summary>💡 Essay Writing Tips <span class="chip chip-blue" style="margin-left:8px;">Score Boosters</span></summary>
-    <div class="details-body">
-    <ul class="tip-list">
-      <li data-n="1"><strong>Word count:</strong> Stay between 250–270 words. Under 200 = automatic mark deduction. Over 300 = no bonus, just more chances for errors.</li>
-      <li data-n="2"><strong>Specific examples:</strong> Replace "many countries" with a real one: "countries like Finland", "sectors such as healthcare". Specificity raises your content score from 3 to 5+.</li>
-      <li data-n="3"><strong>Vary sentence starters:</strong> Don't begin 3 sentences with "It". Use "This", "Such", "These benefits", "The implementation of..."</li>
-      <li data-n="4"><strong>Spelling is 6 marks:</strong> Proof read in the last 2 minutes. The AI is strict — "goverment", "enviroment" are common costly errors.</li>
-      <li data-n="5"><strong>Connectors to vary:</strong> Besides "Furthermore" and "Consequently", also use: "Moreover", "In contrast", "Nevertheless", "As a result", "Despite this".</li>
-      <li data-n="6"><strong>Never leave a body paragraph with only generic examples.</strong> "Various sectors" is not an example — it's a placeholder. Name at least one real context per paragraph.</li>
-    </ul>
-    </div>
-  </details>
-
 </div>
 
-
+<!-- ===== READING ===== -->
 <div class="section" id="reading-master" data-group="reading">
-<div class="sec-title">Reading <span>Templates</span></div>
-<div class="card"><p>
-    <h3>📖 Reading Logic</h3>
-    <ul>
-      <li><b>Reading Fill in the Blanks:</b> Focus on grammar, collocations, and vocabulary.</li>
-      <li><b>Re-order Paragraphs:</b> Find the topic sentence first, then link pronouns and connectors.</li>
-      <li><b>Multiple Choice:</b> Read the question first, then scan for evidence.</li>
-      <li><b>Reading & Writing FIB:</b> Check grammar, tense, article, and preposition usage.</li>
+  <div class="sec-title">Reading <span>Templates</span></div>
+  <div class="card">
+    <div class="card-title">📖 Reading Logic</div>
+    <ul class="tip-list">
+      <li data-n="1"><strong>Reading Fill in the Blanks:</strong> Focus on grammar, collocations, and vocabulary.</li>
+      <li data-n="2"><strong>Re-order Paragraphs:</strong> Find the topic sentence first, then link pronouns and connectors.</li>
+      <li data-n="3"><strong>Multiple Choice:</strong> Read the question first, then scan for evidence.</li>
+      <li data-n="4"><strong>Reading &amp; Writing FIB:</strong> Check grammar, tense, article, and preposition usage.</li>
     </ul>
-    </p></div>
+  </div>
 </div>
 
+<!-- ===== LISTENING ===== -->
 <div class="section" id="listening-master" data-group="listening">
-<div class="sec-title">Listening <span>Templates</span></div>
-<div class="card"><p>
-    <h3>🎧 Listening Logic</h3>
-    <ul>
-      <li><b>Summarize Spoken Text:</b> Write keywords while listening and use a fixed template.</li>
-      <li><b>Listening Fill in the Blanks:</b> Predict grammar and spelling before the audio reaches the gap.</li>
-      <li><b>Highlight Incorrect Words:</b> Follow the transcript carefully and mark mismatches immediately.</li>
-      <li><b>Write From Dictation:</b> Prioritize spelling, word order, and sentence accuracy.</li>
+  <div class="sec-title">Listening <span>Templates</span></div>
+  <div class="card">
+    <div class="card-title">🎧 Listening Logic</div>
+    <ul class="tip-list">
+      <li data-n="1"><strong>Summarize Spoken Text:</strong> Write keywords while listening and use a fixed template.</li>
+      <li data-n="2"><strong>Listening Fill in the Blanks:</strong> Predict grammar and spelling before the audio reaches the gap.</li>
+      <li data-n="3"><strong>Highlight Incorrect Words:</strong> Follow the transcript carefully and mark mismatches immediately.</li>
+      <li data-n="4"><strong>Write From Dictation:</strong> Prioritize spelling, word order, and sentence accuracy.</li>
     </ul>
-    </p></div>
+  </div>
 </div>
 
-</main>
-
-<!-- Toast -->
-<div class="toast" id="toast">✅ Marked as Studied!</div>
-
-<script>
-// ── Storage key ──
-const STORAGE_KEY = 'pte_studied_v1';
-
-// All template IDs grouped by section
-const SECTION_TEMPLATES = {
-  speaking: ['tpl-read-aloud', 'tpl-repeat-sentence'],
-  describe: ['tpl-describe-universal', 'tpl-describe-graph', 'tpl-describe-photo', 'tpl-describe-pie'],
-  retell: ['tpl-retell-basic', 'tpl-retell-simple', 'tpl-retell-inter', 'tpl-retell-adv'],
-  sgd: ['tpl-sgd-easy', 'tpl-sgd-medium', 'tpl-sgd-hard'],
-  rts: ['tpl-rts-formal', 'tpl-rts-semi', 'tpl-rts-informal'],
-  sst: ['tpl-sst-primary', 'tpl-sst-negative', 'tpl-sst-example', 'tpl-sst-alt'],
-  essay: ['tpl-essay-intro', 'tpl-essay-body1', 'tpl-essay-body2', 'tpl-essay-conclusion', 'tpl-essay-full']
-};
-
-const ALL_TEMPLATES = Object.values(SECTION_TEMPLATES).flat();
-
-// Load data
-function loadData() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
-}
-function saveData(data) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
-}
-
-// Format date nicely
-function fmtDate(iso) {
-  const d = new Date(iso);
-  return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-}
-
-// Mark as studied
-function markStudied(id) {
-  const data = loadData();
-  data[id] = new Date().toISOString();
-  saveData(data);
-  applyState(id, data[id]);
-  showToast('✅ Marked as Studied!');
-  updateProgress();
-}
-
-// Unmark
-function unmarkStudied(id) {
-  const data = loadData();
-  delete data[id];
-  saveData(data);
-  applyState(id, null);
-  showToast('↩ Unmarked');
-  updateProgress();
-}
-
-// Apply visual state to a template
-function applyState(id, dateIso) {
-  const block = document.getElementById(id);
-  const btn = document.getElementById('btn-' + id);
-  const unbtn = document.getElementById('unbtn-' + id);
-  const dateEl = document.getElementById('date-' + id);
-  if (!block) return;
-
-  if (dateIso) {
-    block.classList.add('studied');
-    if (btn) { btn.classList.add('done'); btn.textContent = 'Studied ✓'; }
-    if (unbtn) unbtn.style.display = 'inline-block';
-    if (dateEl) dateEl.textContent = '· ' + fmtDate(dateIso);
-  } else {
-    block.classList.remove('studied');
-    if (btn) { btn.classList.remove('done'); btn.textContent = 'Mark as Studied'; }
-    if (unbtn) unbtn.style.display = 'none';
-    if (dateEl) dateEl.textContent = '';
-  }
-}
-
-// Update overall & section progress
-function updateProgress() {
-  const data = loadData();
-  const total = ALL_TEMPLATES.length;
-  const done = ALL_TEMPLATES.filter(id => data[id]).length;
-  const pct = total ? Math.round((done / total) * 100) : 0;
-
-  const bar = document.getElementById('hero-bar');
-  const pctEl = document.getElementById('hero-pct');
-  if (bar) bar.style.width = pct + '%';
-  if (pctEl) pctEl.textContent = pct + '%';
-
-  // Tab dots
-  for (const [sec, ids] of Object.entries(SECTION_TEMPLATES)) {
-    const secDone = ids.filter(id => data[id]).length;
-    const dot = document.getElementById('dot-' + sec);
-    if (dot) {
-      dot.classList.toggle('show', secDone > 0 && secDone < ids.length);
-      // fully done = no dot needed (all green)
-      if (secDone === ids.length) dot.style.background = 'var(--accent3)';
-    }
-  }
-}
-
-// Toast
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
-}
-
-// Tab switch
-function show(id, el) {
-  document.querySelectorAll('.section').forEach(s => {
-    s.classList.remove('active');
-    s.style.display = 'none';
-  });
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  const target = document.getElementById(id);
-  if (target) { target.classList.add('active'); target.style.display = 'block'; }
-  if (el) el.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Init on load
-window.addEventListener('DOMContentLoaded', () => {
-  // Section visibility is managed by showGroup() — do not override display here
-  const data = loadData();
-  ALL_TEMPLATES.forEach(id => applyState(id, data[id] || null));
-  updateProgress();
-  buildPlanner();
-  loadPlannerState();
-});
-</script>
-
-<!-- ===== PLANNER SECTION HTML (injected by JS) ===== -->
-<div class="section" id="planner" data-group="timetable" style="display:none;">
+<!-- ===== PLANNER ===== -->
+<div class="section" id="planner" data-group="timetable">
   <div class="sec-title">10-Day Study <span>Planner</span></div>
-  <div class="sec-sub">8+ hours daily · All four PTE sections · Exercise &amp; Lunch fixed</div>
+  <div class="sec-sub">8+ hours daily · Real PTE question tasks · Exercise &amp; Lunch fixed</div>
 
   <div class="planner-header">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
       <div>
-        <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">PTE Academic · Advanced Track · 79+</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">PTE Academic · Target 79+</div>
         <div id="planner-label" class="planner-label">0 / 0 tasks completed</div>
       </div>
       <div class="planner-controls">
@@ -1061,134 +676,302 @@ window.addEventListener('DOMContentLoaded', () => {
   <div id="planner-days"></div>
 </div>
 
+</main>
+
+<div class="toast" id="toast">✅ Done!</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
 <script>
+// ── Storage ──
+const STORAGE_KEY = 'pte_studied_v1';
+
+const SECTION_TEMPLATES = {
+  speaking: ['tpl-read-aloud','tpl-repeat-sentence'],
+  describe: ['tpl-describe-universal','tpl-describe-graph','tpl-describe-photo','tpl-describe-pie'],
+  retell:   ['tpl-retell-basic','tpl-retell-inter','tpl-retell-adv'],
+  sgd:      ['tpl-sgd-hard'],
+  rts:      ['tpl-rts-formal'],
+  sst:      ['tpl-sst-primary'],
+  essay:    ['tpl-essay-intro','tpl-essay-body1','tpl-essay-body2','tpl-essay-conclusion']
+};
+const ALL_TEMPLATES = Object.values(SECTION_TEMPLATES).flat();
+
+function loadData() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+function saveData(d) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch {} }
+function fmtDate(iso) { const d = new Date(iso); return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }
+
+function markStudied(id) {
+  const data = loadData(); data[id] = new Date().toISOString(); saveData(data);
+  applyState(id, data[id]); showToast('✅ Marked as Studied!'); updateProgress();
+}
+function unmarkStudied(id) {
+  const data = loadData(); delete data[id]; saveData(data);
+  applyState(id, null); showToast('↩ Unmarked'); updateProgress();
+}
+function applyState(id, dateIso) {
+  const block = document.getElementById(id);
+  const btn   = document.getElementById('btn-'+id);
+  const unbtn = document.getElementById('unbtn-'+id);
+  const dateEl= document.getElementById('date-'+id);
+  if (!block) return;
+  if (dateIso) {
+    block.classList.add('studied');
+    if (btn)   { btn.classList.add('done'); btn.textContent = 'Studied ✓'; }
+    if (unbtn)  unbtn.style.display = 'inline-block';
+    if (dateEl) dateEl.textContent = '· '+fmtDate(dateIso);
+  } else {
+    block.classList.remove('studied');
+    if (btn)   { btn.classList.remove('done'); btn.textContent = 'Mark as Studied'; }
+    if (unbtn)  unbtn.style.display = 'none';
+    if (dateEl) dateEl.textContent = '';
+  }
+}
+function updateProgress() {
+  const data = loadData();
+  const total = ALL_TEMPLATES.length;
+  const done  = ALL_TEMPLATES.filter(id => data[id]).length;
+  const pct   = total ? Math.round((done/total)*100) : 0;
+  const bar = document.getElementById('hero-bar');
+  const pctEl = document.getElementById('hero-pct');
+  if (bar)   bar.style.width = pct+'%';
+  if (pctEl) pctEl.textContent = pct+'%';
+}
+
+// ── Toast ──
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── Tab group switch ──
+function showGroup(group, btn) {
+  document.querySelectorAll('[data-group]').forEach(el => {
+    const match = el.dataset.group === group;
+    el.style.display = match ? 'block' : 'none';
+    if (el.classList.contains('section')) el.classList.toggle('active', match);
+  });
+  document.querySelectorAll('.master-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── Audio Player (Web Speech API) ──
+// Each template gets a mini TTS player using speechSynthesis
+const TEMPLATE_TEXTS = {
+  'tpl-read-aloud': 'Read Aloud instructions: Read as it is. No addition, omission, or repetition. Focus on oral fluency and clear pronunciation. Read at a natural pace without long pauses.',
+  'tpl-repeat-sentence': 'Repeat Sentence instructions: Write the initial of the first half of the sentence while listening. Use the 3-second rule to capture and recall the full sentence. Speak fluently and clearly.',
+  'tpl-describe-universal': 'Universal Describe Image template: The given image represents the title. This image has various details to analyze. The image includes various shapes, sizes, colors, and details. It displays a range of elements such as element 1 and element 2. In the image, key details like specific content 1 and specific content 2 can be noted. Additionally, it highlights another prominent feature or detail. Overall, the content in this image is important for understanding the topic.',
+  'tpl-describe-graph': 'Graph Description template: A line, bar, or mix graph can be seen that represents the title and trend or comparison. This graph has a very clear layout, which makes it easy to analyze. The graph includes various shapes, lines, and colors. The lines are marked with different values, ranging from the low value to the high value. Additionally, the graph shows data on content 1 and content 2. Overall, the information shown in this graph is crucial for understanding the main title or content.',
+  'tpl-describe-photo': 'Photograph Description template: The photograph shows the description of the subject or scene. It is a visually appealing image that captures attention. The photo includes a mix of different shapes, sizes, and colors. There are a variety of details, with highlights such as element 1 and element 2. The colors in this photo add to its attractiveness. In the photograph, specific details can be seen. Overall, this image brings an important perspective to the content.',
+  'tpl-describe-pie': 'Pie Chart template: The given pie chart displays the title and brief description of distribution or proportions. This pie chart is well-organized, which makes it easy to interpret. The chart is made up of different segments, colors, and percentages. The segments vary in size, ranging from the smallest percentage to the largest percentage. The colors help distinguish each segment clearly. Overall, the information in this chart is valuable for understanding the topic.',
+  'tpl-retell-basic': 'Basic Re-tell Lecture template: The lecture focused on the main topic and covered several key areas related to it. Initially, the speaker introduced point 1, followed by a discussion on point 2 and point 3. The speaker then expanded on point 4, explaining its relevance and connection to the related idea or detail. Additionally, point 5 and point 6 were discussed, providing further depth to the main topic. Towards the end, the speaker summarized with a key takeaway. Overall, the lecture offered valuable information and insights on the topic.',
+  'tpl-retell-inter': 'Intermediate Re-tell Lecture template: The lecture was mainly focused on the topic and related topic. Initially, the speaker introduced point 1, followed by explanations on point 2 and point 3. Secondly, the speaker moved on to discuss point 4, explaining how it relates to point 5 and point 6. Later, the speaker elaborated on point 7, mentioning relevant examples. Furthermore, the speaker highlighted additional detail and its importance in the relevant context. In conclusion, this lecture presented valuable insights and detailed information on the subject.',
+  'tpl-retell-adv': 'Advanced Re-tell Lecture template: The lecture primarily explored the topics of the main theme and secondary theme, delving into their significance. The speaker began by examining key aspect 1 and proceeded to discuss key aspect 2 and key aspect 3 in considerable detail. Subsequently, the speaker analyzed concept 1, linking it to concept 2 and concept 3 to enhance understanding. In addition, an in-depth explanation of insight 1 and insight 2 was provided, supported by relevant examples. Overall, this lecture was highly informative, offering a comprehensive analysis and insightful perspectives on the topic.',
+  'tpl-sgd-hard': 'Advanced Summarize Group Discussion template: The discussion primarily focused around the main topic. The first speaker elaborated on point 1, and further reflected on point 2, highlighting how point 3 plays a key role in the overall experience. Subsequently, the second speaker compared it with point 1, providing insight into point 2, and emphasizing the importance of point 3. The third speaker shared personal views on point 1, offering specific examples about point 2, and concluded with thoughts on point 3. As the conversation progressed, it ended by stressing the conclusion idea. Overall, the discussion presented diverse perspectives.',
+  'tpl-rts-formal': 'Formal Respond to a Situation template: Dear Sir or Madam. I understand that — state the problem briefly. I would like to recommend the main solution, as this will bring a reason or benefit. In addition, you may consider extra suggestion 1 and extra suggestion 2 to improve the situation. If required, I am available to provide personal assistance. I trust these suggestions will help resolve the matter effectively. Thank you.',
+  'tpl-sst-primary': 'Summarise Spoken Text primary template: The talk delineates the importance of SOMETHING in doing SOMETHING ELSE. According to the speaker, it is by doing SOMETHING that it not only helps in doing TASK 1, but also helps in doing TASK 2. Hence, the role of SOMETHING in doing SOMETHING ELSE is instrumental indeed. Replace the words in italics with keywords from the lecture you heard.',
+  'tpl-essay-intro': 'Essay Introduction template: In today\'s rapidly changing world, the issue of TOPIC has attracted significant attention. While some people believe that VIEW 1, others argue that VIEW 2. This essay will discuss both perspectives before presenting a reasoned conclusion.',
+  'tpl-essay-body1': 'Essay Body Paragraph 1 template: On the one hand, there are several advantages associated with TOPIC. Firstly, it can contribute to individual and societal development. Secondly, it often improves efficiency, productivity, and overall quality of life. For example, many countries and organizations have successfully implemented such approaches and achieved positive outcomes. Therefore, these benefits cannot be overlooked.',
+  'tpl-essay-body2': 'Essay Body Paragraph 2 template: On the other hand, certain drawbacks should also be considered. One major concern is that it may create social, economic, or environmental challenges. Furthermore, improper implementation can lead to unintended negative consequences. For instance, various sectors have experienced difficulties when adequate planning and regulation were absent. Consequently, these issues deserve careful attention.',
+  'tpl-essay-conclusion': 'Essay Conclusion template: In conclusion, although TOPIC presents some disadvantages, its benefits are generally more significant when managed effectively. In my opinion, a balanced approach is essential to maximize advantages while minimizing potential drawbacks.'
+};
+
+let currentUtterance = null;
+let currentAudioId   = null;
+let speechRates = {};
+
+function buildAudioPlayer(tplId) {
+  const container = document.getElementById('audio-' + tplId);
+  if (!container) return;
+  const text = TEMPLATE_TEXTS[tplId];
+  if (!text) return;
+
+  speechRates[tplId] = 0.9;
+
+  container.innerHTML = `
+    <div class="audio-bar">
+      <button class="audio-play-btn" id="aplay-${tplId}" onclick="toggleSpeech('${tplId}')" title="Listen to template">▶</button>
+      <div class="audio-progress-wrap">
+        <div class="audio-label">🔊 Listen to Template</div>
+      </div>
+      <button class="audio-speed-btn" id="aspeed-${tplId}" onclick="cycleSpeed('${tplId}')">0.9×</button>
+      <span class="audio-time" id="atime-${tplId}">TTS</span>
+    </div>`;
+}
+
+function toggleSpeech(tplId) {
+  const btn = document.getElementById('aplay-' + tplId);
+  if (currentAudioId === tplId && window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    btn.textContent = '▶';
+    btn.classList.remove('playing');
+    currentAudioId = null;
+    return;
+  }
+  // Stop any current
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    const oldBtn = document.getElementById('aplay-' + currentAudioId);
+    if (oldBtn) { oldBtn.textContent = '▶'; oldBtn.classList.remove('playing'); }
+  }
+  const text = TEMPLATE_TEXTS[tplId];
+  if (!text || !window.speechSynthesis) { showToast('⚠ TTS not supported in this browser'); return; }
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = speechRates[tplId] || 0.9;
+  utter.pitch = 1;
+  utter.lang = 'en-US';
+  // Prefer a clear voice
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = voices.find(v => v.name.includes('Google') && v.lang.startsWith('en')) ||
+                    voices.find(v => v.lang.startsWith('en'));
+  if (preferred) utter.voice = preferred;
+
+  utter.onstart = () => { btn.textContent = '⏹'; btn.classList.add('playing'); currentAudioId = tplId; };
+  utter.onend   = () => { btn.textContent = '▶'; btn.classList.remove('playing'); currentAudioId = null; };
+  utter.onerror = () => { btn.textContent = '▶'; btn.classList.remove('playing'); currentAudioId = null; };
+  window.speechSynthesis.speak(utter);
+  currentUtterance = utter;
+}
+
+const SPEEDS = [0.7, 0.9, 1.0, 1.2, 1.5];
+function cycleSpeed(tplId) {
+  const btn = document.getElementById('aspeed-' + tplId);
+  const cur = speechRates[tplId] || 0.9;
+  const idx = SPEEDS.indexOf(cur);
+  speechRates[tplId] = SPEEDS[(idx + 1) % SPEEDS.length];
+  btn.textContent = speechRates[tplId] + '×';
+  // Restart if currently playing
+  if (currentAudioId === tplId) { toggleSpeech(tplId); setTimeout(() => toggleSpeech(tplId), 100); }
+}
+
+// ── PTE PLANNER DATA ── (updated with real PTE exam question types)
 const PL_DAYS = [
-  { title:"Foundations & Diagnostic", sub:"Assess your baseline across all skills", col:"accent", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", desc:"Cardio / stretching — clear the mind", tag:"fixed", fixed:true },
-    { time:"6:00–7:00 AM",  name:"Diagnostic Reading", desc:"Multiple-choice & re-order paragraphs — note weak areas", tag:"reading" },
-    { time:"7:00–8:30 AM",  name:"Diagnostic Writing", desc:"Summarize written text + Essay (timed) — assess coherence", tag:"writing" },
-    { time:"8:30–9:30 AM",  name:"Diagnostic Speaking", desc:"Read aloud, repeat sentence, describe image — record yourself", tag:"speaking" },
-    { time:"9:30–10:00 AM", name:"Break + Review Notes", desc:"Reflect on weak points, prep questions", tag:"review" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", desc:"Rest and recharge — step away from screens", tag:"fixed", fixed:true },
-    { time:"11:00 AM–1:00 PM",name:"Diagnostic Listening", desc:"Fill in blanks, summarize spoken text, highlight correct summary", tag:"listening" },
-    { time:"1:00–2:00 PM",  name:"Error Analysis", desc:"Review diagnostic results, categorize mistakes by type", tag:"review" },
-    { time:"2:00–3:30 PM",  name:"Core Vocabulary", desc:"PTE academic word list — 60 high-frequency words with context", tag:"reading" },
-    { time:"3:30–5:00 PM",  name:"Speaking Drills", desc:"Read aloud × 20 sentences, focus on fluency & pronunciation", tag:"speaking" },
-    { time:"5:00–6:00 PM",  name:"Evening Review", desc:"Summarize the day's findings, update improvement list", tag:"review" },
+  { title:"Foundations & Diagnostic", sub:"Assess baseline · Learn exam format", col:"accent", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–7:00 AM",   name:"PTE Exam Orientation", desc:"Study all section formats, question types, timing rules, scoring criteria", tag:"review", qcount:"All 20 question types overview" },
+    { time:"7:00–8:00 AM",   name:"Speaking: Read Aloud × 10", desc:"Practice reading passages of 60–90 words aloud. Focus on zero hesitation, natural pacing", tag:"speaking", qcount:"RA – 6–7 Qs in exam" },
+    { time:"8:00–9:00 AM",   name:"Speaking: Repeat Sentence × 20", desc:"Audio clips 7–9 seconds. Write first-letter initials quickly, then reproduce the full sentence", tag:"speaking", qcount:"RS – 10–12 Qs in exam" },
+    { time:"9:00–10:00 AM",  name:"Writing: Summarize Written Text × 2", desc:"Condense 250-word passage into one sentence (75 words max) in 10 minutes each", tag:"writing", qcount:"SWT – 1–2 Qs in exam" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:30 PM", name:"Reading: Reading & Writing FIB × 8", desc:"Most-marks task. Choose words from drop-down to fill blanks. Focus on collocations and grammar", tag:"reading", qcount:"R&W FIB – 5–6 Qs in exam" },
+    { time:"12:30–1:30 PM",  name:"Listening: Write from Dictation × 15", desc:"Highest impact listening task. Type the exact sentence you hear. Full accuracy target", tag:"listening", qcount:"WFD – 3–4 Qs in exam" },
+    { time:"1:30–2:30 PM",   name:"Listening: Fill in the Blanks × 5", desc:"Audio plays once. Type the missing word in each blank while listening", tag:"listening", qcount:"LFIB – 2–3 Qs in exam" },
+    { time:"2:30–3:30 PM",   name:"Diagnostic Review", desc:"Score yourself, log errors by task type, create personal improvement list", tag:"review" },
+    { time:"3:30–5:00 PM",   name:"Error Analysis & Template Study", desc:"Study all speaking templates. Practice Read Aloud template 10 more times", tag:"review" },
   ]},
-  { title:"Reading Mastery", sub:"Deep dive into all reading question types", col:"accent", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–7:30 AM",  name:"Multiple-choice (Single)", desc:"Skim & scan strategy — 10 timed passages", tag:"reading" },
-    { time:"7:30–9:00 AM",  name:"Multiple-choice (Multiple)", desc:"Elimination technique, 12 practice questions", tag:"reading" },
-    { time:"9:00–10:00 AM", name:"Re-order Paragraphs", desc:"Cohesion & coherence clues — 8 timed sets", tag:"reading" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–12:30 PM",name:"Fill in the Blanks (R)", desc:"Collocation & grammar in context — 10 exercises", tag:"reading" },
-    { time:"12:30–2:00 PM", name:"Reading & Writing FIB", desc:"Vocabulary in context, 12 exercises — most marks per minute", tag:"reading" },
-    { time:"2:00–3:30 PM",  name:"Timed Reading Set", desc:"Full reading section simulation under exam conditions", tag:"practice" },
-    { time:"3:30–4:30 PM",  name:"Answer Review", desc:"Analyze every wrong answer, identify patterns", tag:"review" },
-    { time:"4:30–6:00 PM",  name:"Vocabulary Expansion", desc:"Context sentences, synonyms, antonyms for 50 new words", tag:"reading" },
-    { time:"6:00–7:00 PM",  name:"Reading Aloud (bonus)", desc:"Read 10 academic paragraphs aloud for dual Reading + Speaking gain", tag:"speaking" },
+  { title:"Speaking Deep Dive", sub:"All 5 speaking task types with question counts", col:"accent", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–7:30 AM",   name:"Read Aloud × 20", desc:"Read complex academic passages. Record yourself. Listen back and score fluency. Aim for 0 pauses", tag:"speaking", qcount:"RA – 6–7 Qs in exam · 3 skills scored" },
+    { time:"7:30–9:00 AM",   name:"Repeat Sentence × 30", desc:"Use 3-second window: write initials → reproduce sentence. Focus on connecting words", tag:"speaking", qcount:"RS – 10–12 Qs in exam · 3 skills scored" },
+    { time:"9:00–10:00 AM",  name:"Describe Image × 6", desc:"40 seconds each. Practice all types: bar graph, pie chart, line graph, photograph, table, map", tag:"speaking", qcount:"DI – 3–4 Qs in exam · 3 skills scored" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:30 PM", name:"Re-tell Lecture × 4", desc:"Listen once, note 10 keywords, speak for 40 seconds using intermediate or advanced template", tag:"speaking", qcount:"RL – 1–2 Qs in exam · 3 skills scored" },
+    { time:"12:30–1:30 PM",  name:"Respond to a Situation × 5", desc:"Read the prompt (25 sec), respond for 40 sec. Formal, semi-formal, or informal tone", tag:"speaking", qcount:"RTS – 3 Qs in exam · 3 skills scored" },
+    { time:"1:30–2:30 PM",   name:"Answer Short Question × 20", desc:"One or two word answers. Quick-fire knowledge: geography, science, daily life", tag:"speaking", qcount:"ASQ – 5–6 Qs in exam · pronunciation only" },
+    { time:"2:30–3:30 PM",   name:"Self-Recording Review", desc:"Listen back to all recordings. Mark: fluency breaks, mispronounced words, missing content", tag:"review" },
+    { time:"3:30–5:00 PM",   name:"Pronunciation & Shadowing Drill", desc:"Shadow 3 academic TED clips at 0.9× speed. Copy stress, rhythm, intonation patterns", tag:"speaking" },
   ]},
-  { title:"Writing Excellence", sub:"Essays and summaries to perfection", col:"purple", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–7:00 AM",  name:"Summarize Written Text", desc:"Practice condensing 300-word passages into one sentence (≤75 words)", tag:"writing" },
-    { time:"7:00–8:30 AM",  name:"Essay — Task 1", desc:"Timed 20-min essay: agree/disagree prompt — outline, draft, edit", tag:"writing" },
-    { time:"8:30–9:30 AM",  name:"Essay — Task 2", desc:"Discuss both views + opinion — structure practice", tag:"writing" },
-    { time:"9:30–10:00 AM", name:"Cohesion Workshop", desc:"Practice linking words: contrast, addition, cause/effect", tag:"writing" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–12:30 PM",name:"Essay Review & Scoring", desc:"Self-score using PTE rubric: content, form, grammar, vocabulary", tag:"review" },
-    { time:"12:30–2:00 PM", name:"Grammar Clinic", desc:"Complex sentences, parallel structure, article usage — 30 drills", tag:"writing" },
-    { time:"2:00–3:30 PM",  name:"Paraphrasing Practice", desc:"Rewrite 20 sentences without changing meaning", tag:"writing" },
-    { time:"3:30–5:00 PM",  name:"Timed Writing Set", desc:"Full writing section under strict timing", tag:"practice" },
-    { time:"5:00–6:30 PM",  name:"Essay Model Analysis", desc:"Study 3 Band 90 essays — annotate structure & vocab choices", tag:"review" },
+  { title:"Writing Mastery", sub:"SWT + Essay with templates and scoring rubric", col:"purple", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–7:30 AM",   name:"Summarize Written Text × 4", desc:"10 min each. One complex sentence 25–75 words. Score: Content, Form, Grammar, Vocab, Spelling", tag:"writing", qcount:"SWT – 1–2 Qs in exam · 7 pts each" },
+    { time:"7:30–9:30 AM",   name:"Essay: Agree / Disagree × 1", desc:"Plan 2 min. Write 250–270 words in 18 min. Proof-read 3 min. Use introduction → body1 → body2 → conclusion", tag:"writing", qcount:"Essay – 1 Q in exam · 5 skills × 6 pts" },
+    { time:"9:30–10:00 AM",  name:"Essay: Discuss Both Views × 1 (timed)", desc:"Second essay. Strict 20-minute timer. Focus on Development and Structure score", tag:"writing", qcount:"Essay format variation" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:30 PM", name:"Essay Review & Vocabulary", desc:"Check own essay against rubric. Replace weak words. Learn 20 academic linking phrases", tag:"review" },
+    { time:"12:30–2:00 PM",  name:"Grammar Clinic", desc:"Complex sentences, parallel structure, noun clauses, conditionals — 40 targeted drills", tag:"writing" },
+    { time:"2:00–3:30 PM",   name:"SWT Speed Practice × 4", desc:"Under 9 minutes each. Must be one sentence. Check: no fragments, no comma splices", tag:"writing", qcount:"SWT timing drill" },
+    { time:"3:30–5:00 PM",   name:"Spelling Accuracy Drill", desc:"Top 50 misspelled PTE words: government, environment, committee, accommodation, necessary", tag:"writing" },
   ]},
-  { title:"Speaking Fluency", sub:"Pronunciation, pacing and spontaneous speech", col:"amber", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–7:00 AM",  name:"Read Aloud Intensive", desc:"30 sentences — focus on stress, intonation, and zero hesitation", tag:"speaking" },
-    { time:"7:00–8:00 AM",  name:"Repeat Sentence", desc:"50 sentences — phonetic chunking, train short-term memory recall", tag:"speaking" },
-    { time:"8:00–9:00 AM",  name:"Describe Image", desc:"10 graphs, tables, pie charts — 40-second response framework", tag:"speaking" },
-    { time:"9:00–10:00 AM", name:"Re-tell Lecture", desc:"5 lectures — listen once, reconstruct key content fluently", tag:"speaking" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–12:00 PM",name:"Answer Short Question", desc:"50 rapid-fire responses — build speed and confidence", tag:"speaking" },
-    { time:"12:00–1:30 PM", name:"Self-Recording Review", desc:"Play back morning recordings — score fluency, pronunciation, content", tag:"review" },
-    { time:"1:30–3:00 PM",  name:"Pronunciation Drills", desc:"Minimal pairs, connected speech, stress patterns", tag:"speaking" },
-    { time:"3:00–4:30 PM",  name:"Timed Speaking Set", desc:"Full simulated speaking section — no pauses", tag:"practice" },
-    { time:"4:30–6:30 PM",  name:"Shadowing Practice", desc:"Shadow 3 TED Talk excerpts for rhythm and prosody", tag:"speaking" },
+  { title:"Reading Section Deep Dive", sub:"All 5 reading task types with strategies", col:"teal", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–7:30 AM",   name:"Reading & Writing FIB × 10", desc:"Drop-down word choice. Check part of speech first, then collocation. Highest marks per minute", tag:"reading", qcount:"R&W FIB – 5–6 Qs in exam · 1 pt per blank" },
+    { time:"7:30–9:00 AM",   name:"Reading FIB × 8", desc:"Drag-and-drop word bank. Check grammar agreement, then meaning. Pace: 2 min per question", tag:"reading", qcount:"RFIB – 4–5 Qs in exam · 1 pt per blank" },
+    { time:"9:00–10:00 AM",  name:"Re-order Paragraphs × 5", desc:"Find topic sentence (no pronoun referencing previous text), link connectors, check flow", tag:"reading", qcount:"ROP – 2–3 Qs in exam · partial credit" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:30 PM", name:"Multiple Choice Single × 8", desc:"Read question FIRST. Skim passage. Locate evidence. Eliminate 2 wrong answers first", tag:"reading", qcount:"MCSA – 2 Qs in exam · 1 pt each" },
+    { time:"12:30–2:00 PM",  name:"Multiple Choice Multiple × 5", desc:"At least 2 correct answers always. Mark ALL that are explicitly supported by text", tag:"reading", qcount:"MCMA – 2 Qs in exam · partial credit" },
+    { time:"2:00–3:30 PM",   name:"Timed Full Reading Section", desc:"Simulate complete reading section under exam timing. No pauses.", tag:"practice" },
+    { time:"3:30–5:00 PM",   name:"Reading Vocabulary Workshop", desc:"Academic vocabulary in context. Synonyms and antonyms for top 40 PTE reading words", tag:"reading" },
   ]},
-  { title:"Listening Precision", sub:"Accuracy, note-taking and inference", col:"teal", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–7:30 AM",  name:"Summarize Spoken Text", desc:"5 lectures — 10-minute write-up after each, focus on key ideas", tag:"listening" },
-    { time:"7:30–8:30 AM",  name:"Multiple-choice Listening", desc:"Single and multiple answer — 12 questions with distractor analysis", tag:"listening" },
-    { time:"8:30–9:30 AM",  name:"Fill in the Blanks (L)", desc:"Dictation accuracy — 10 exercises, type while listening", tag:"listening" },
-    { time:"9:30–10:00 AM", name:"Break", tag:"fixed", fixed:true },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–12:30 PM",name:"Highlight Correct Summary", desc:"Practice spotting paraphrased content vs distractors — 10 sets", tag:"listening" },
-    { time:"12:30–2:00 PM", name:"Select Missing Word", desc:"Context prediction — 20 exercises building lexical anticipation", tag:"listening" },
-    { time:"2:00–3:00 PM",  name:"Highlight Incorrect Words", desc:"Transcription accuracy — 15 timed sets", tag:"listening" },
-    { time:"3:00–4:30 PM",  name:"Write from Dictation", desc:"Most important task — 30 sentences, full accuracy target", tag:"listening" },
-    { time:"4:30–6:30 PM",  name:"Timed Listening Set", desc:"Full simulated listening section under exam conditions", tag:"practice" },
+  { title:"Listening Section Deep Dive", sub:"All 8 listening task types with strategies", col:"teal", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–7:30 AM",   name:"Write from Dictation × 30", desc:"Most impactful listening task. Hear sentence once, type it exactly. Focus on function words", tag:"listening", qcount:"WFD – 3–4 Qs in exam · 1 pt per word" },
+    { time:"7:30–8:30 AM",   name:"Listening FIB × 8", desc:"Transcript has blanks. Audio plays once. Type word exactly as heard. Check spelling carefully", tag:"listening", qcount:"LFIB – 2–3 Qs in exam · 1 pt per blank" },
+    { time:"8:30–9:30 AM",   name:"Highlight Incorrect Words × 5", desc:"Click words in transcript that differ from audio. Pace yourself — audio does not repeat", tag:"listening", qcount:"HIW – 2–3 Qs in exam · partial credit" },
+    { time:"9:30–10:00 AM",  name:"Break", tag:"fixed", fixed:true },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:00 PM", name:"Summarize Spoken Text × 3", desc:"Write 50–70 words. Use primary template. 10 min per question. Include 5+ key content words", tag:"listening", qcount:"SST – 1–2 Qs in exam · 10 pts each" },
+    { time:"12:00–1:00 PM",  name:"Highlight Correct Summary × 5", desc:"Choose the summary that accurately reflects audio. Eliminate summaries with contradictions", tag:"listening", qcount:"HCS – 1–2 Qs in exam · 1 pt each" },
+    { time:"1:00–2:00 PM",   name:"Select Missing Word × 5", desc:"Audio ends with beep. Choose which word fits the context. Predict from context before beep", tag:"listening", qcount:"SMW – 1–2 Qs in exam · 1 pt each" },
+    { time:"2:00–3:00 PM",   name:"MC Single & Multiple Listening × 6", desc:"Note main idea while listening. Use process of elimination for wrong answers", tag:"listening", qcount:"LMCSA + LMCMA – 2–3 Qs in exam" },
+    { time:"3:00–5:00 PM",   name:"Full Listening Section Simulation", desc:"Complete section under exam timing. Train focus and endurance for final 30–40 minutes", tag:"practice" },
   ]},
-  { title:"Integrated Skills Day", sub:"Cross-section tasks and academic language", col:"teal", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–7:30 AM",  name:"Academic Reading + Summary Writing", desc:"Read complex text → Write SWT → Compare to model answer", tag:"writing" },
-    { time:"7:30–9:00 AM",  name:"Lecture Listen → Retell + Essay", desc:"Listen to academic lecture → Retell → Write related essay prompt", tag:"speaking" },
-    { time:"9:00–10:00 AM", name:"Grammar in Context", desc:"Identify grammar issues from your own essays — fix and rewrite", tag:"review" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–12:30 PM",name:"Collocations & Academic Phrases", desc:"Expand use of academic language — 40 key expressions", tag:"reading" },
-    { time:"12:30–2:00 PM", name:"Cross-skill Drill Set", desc:"Read article → FIB → Describe related graph → Write paragraph", tag:"practice" },
-    { time:"2:00–3:30 PM",  name:"Weak Area Focus", desc:"Revisit personal error log — targeted exercises on flagged areas", tag:"review" },
-    { time:"3:30–5:00 PM",  name:"Listening + Speaking Link", desc:"Re-tell 5 lectures + FIB + Write from dictation set", tag:"listening" },
-    { time:"5:00–6:30 PM",  name:"Vocabulary Consolidation", desc:"Flashcard review of all week's new words — active recall test", tag:"review" },
+  { title:"Integrated Skills Day", sub:"Cross-section drills + weak area targeting", col:"teal", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–7:30 AM",   name:"Read Aloud + Reading Comprehension Link", desc:"Read passage aloud → answer comprehension questions → compare reading vs speaking accuracy", tag:"speaking" },
+    { time:"7:30–9:00 AM",   name:"Listen → Summarize Spoken Text → Essay Link", desc:"Listen to lecture → write SST → write essay on same topic. Builds academic coherence", tag:"writing" },
+    { time:"9:00–10:00 AM",  name:"Repeat Sentence + Write from Dictation Link", desc:"RS trains recall; WFD trains spelling. Do 15 RS then 15 WFD — notice improvement", tag:"listening" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:30 PM", name:"Describe Image + Re-order Paragraphs Link", desc:"Organize data from a graph visually, then re-order text paragraphs about same topic", tag:"reading" },
+    { time:"12:30–2:00 PM",  name:"Academic Collocations & PTE Vocabulary", desc:"40 key collocations tested in R&W FIB and Essay. Memorize top patterns with examples", tag:"reading" },
+    { time:"2:00–3:30 PM",   name:"Personal Weak Area Block 1", desc:"Spend 90 min on your single weakest task type from week 1 data", tag:"practice" },
+    { time:"3:30–5:00 PM",   name:"Personal Weak Area Block 2", desc:"Spend 90 min on second weakest task type — timed practice", tag:"practice" },
+    { time:"5:00–6:00 PM",   name:"Progress Review & Week 1 Summary", desc:"Log improvements. Update error list. Plan the exact focus for Mock 1", tag:"review" },
   ]},
-  { title:"Mock Exam Day 1", sub:"Full timed PTE simulation — no breaks within sections", col:"coral", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–6:30 AM",  name:"Light Warm-Up", desc:"5 read-alouds, 5 repeat sentences — activate speaking mode", tag:"speaking" },
-    { time:"6:30–8:00 AM",  name:"Mock — Speaking Section", desc:"Full timed speaking section: RA, RS, DI, RL, ASQ", tag:"practice" },
-    { time:"8:00–8:15 AM",  name:"10-min Rest", desc:"Step outside, hydrate", tag:"fixed", fixed:true },
-    { time:"8:15–10:00 AM", name:"Mock — Writing Section", desc:"SWT + Essay — strict 20+20 min timing", tag:"practice" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–1:30 PM",name:"Mock — Reading Section", desc:"Full reading section — all question types, strict time", tag:"practice" },
-    { time:"1:30–1:45 PM",  name:"Short Break", tag:"fixed", fixed:true },
-    { time:"1:45–3:30 PM",  name:"Mock — Listening Section", desc:"Full listening section — all question types", tag:"practice" },
-    { time:"3:30–5:30 PM",  name:"Detailed Mock Review", desc:"Score each section, log every error, identify patterns", tag:"review" },
-    { time:"5:30–6:30 PM",  name:"Recovery & Planning", desc:"Note top 3 improvements needed, plan Day 8 focus", tag:"review" },
+  { title:"Mock Exam Day 1", sub:"Full timed PTE simulation · Exact exam conditions", col:"coral", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–6:30 AM",   name:"Light Warm-Up", desc:"5 read-alouds, 10 repeat sentences, 5 answer short questions — activate speaking mode", tag:"speaking" },
+    { time:"6:30–8:00 AM",   name:"Mock — Speaking Section (90 min)", desc:"Full section: RA × 6, RS × 10, DI × 3, RL × 1, RTS × 3, ASQ × 5 — no pauses allowed", tag:"practice", qcount:"~28 Qs · 77–89 pts possible" },
+    { time:"8:00–8:15 AM",   name:"Scheduled Break", tag:"fixed", fixed:true },
+    { time:"8:15–10:00 AM",  name:"Mock — Writing Section (40 min)", desc:"SWT × 2 (10 min each) + Essay × 1 (20 min) — strict timer", tag:"practice", qcount:"3 Qs · ~44 pts possible" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–1:00 PM",  name:"Mock — Reading Section (29 min)", desc:"R&W FIB × 5, RFIB × 4, ROP × 2, MCSA × 2, MCMA × 2 — full timing", tag:"practice", qcount:"~15 Qs · 40+ pts possible" },
+    { time:"1:00–1:15 PM",   name:"Short Break", tag:"fixed", fixed:true },
+    { time:"1:15–2:45 PM",   name:"Mock — Listening Section (45 min)", desc:"SST × 1, HCS × 1, MCSA × 1, MCMA × 1, SMW × 1, HIW × 2, LFIB × 2, WFD × 4", tag:"practice", qcount:"~13 Qs · 28+ pts possible" },
+    { time:"2:45–4:30 PM",   name:"Detailed Mock Review", desc:"Score each section and each question type separately. Log every wrong answer with reason", tag:"review" },
+    { time:"4:30–6:00 PM",   name:"Post-Mock Planning", desc:"Rank your weakest 3 task types by impact on score. Build Day 8 targeted plan", tag:"review" },
   ]},
-  { title:"Targeted Weakness Day", sub:"Attack your biggest score gaps from mock 1", col:"coral", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–8:00 AM",  name:"Weakness Block 1", desc:"Deep practice on your #1 weak task type from mock review", tag:"practice" },
-    { time:"8:00–10:00 AM", name:"Weakness Block 2", desc:"Deep practice on your #2 weak task type — 2 hrs intensive", tag:"practice" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–1:00 PM",name:"Weakness Block 3", desc:"Deep practice on your #3 weak task type — timed", tag:"practice" },
-    { time:"1:00–2:30 PM",  name:"Grammar & Fluency Sprint", desc:"30 grammar drills + 20 read-alouds for accuracy boost", tag:"writing" },
-    { time:"2:30–4:00 PM",  name:"Speed Listening", desc:"Write from dictation × 40 sentences — push for 100% accuracy", tag:"listening" },
-    { time:"4:00–5:30 PM",  name:"Mini Mock — Two Sections", desc:"Timed speaking + listening back-to-back — build stamina", tag:"practice" },
-    { time:"5:30–6:30 PM",  name:"Comprehensive Review", desc:"Evaluate today's improvements vs mock benchmark", tag:"review" },
+  { title:"Targeted Weakness Day", sub:"Attack your top 3 score gaps from Mock 1", col:"coral", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–8:30 AM",   name:"Weakness Block 1 — 150 min intensive", desc:"Your single most impactful weak task type. Minimum 30 practice questions with review", tag:"practice" },
+    { time:"8:30–10:00 AM",  name:"Weakness Block 2", desc:"Your #2 weakest task type — 20+ practice questions with timed pressure", tag:"practice" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:30 PM", name:"Weakness Block 3", desc:"Your #3 weakest task type — 20 practice questions and template refinement", tag:"practice" },
+    { time:"12:30–2:00 PM",  name:"Write from Dictation Sprint × 40", desc:"Push for 100% accuracy. Highlight function words you keep missing. Spell check list", tag:"listening", qcount:"WFD – highest mark-per-question impact" },
+    { time:"2:00–3:30 PM",   name:"R&W FIB Collocations Intensive", desc:"Do 15 R&W FIB questions. Note every collocation you got wrong. Make flashcards", tag:"reading", qcount:"R&W FIB – second highest impact" },
+    { time:"3:30–5:00 PM",   name:"Speaking Fluency Sprint", desc:"Read aloud × 20 + Repeat sentence × 20. No gaps allowed. Record and review 5 samples", tag:"speaking" },
+    { time:"5:00–6:00 PM",   name:"Comprehensive Review", desc:"Measure today's accuracy vs Mock 1 baseline. Update error log with improvements", tag:"review" },
   ]},
-  { title:"Mock Exam Day 2", sub:"Full simulation — replicate true exam conditions", col:"purple", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–6:30 AM",  name:"Warm-Up Set", desc:"Read aloud × 5, repeat sentence × 5, answer short Q × 10", tag:"speaking" },
-    { time:"6:30–8:00 AM",  name:"Mock 2 — Speaking", desc:"Full timed speaking section — target fluency score ≥ 79", tag:"practice" },
-    { time:"8:00–8:15 AM",  name:"Short Break", tag:"fixed", fixed:true },
-    { time:"8:15–10:00 AM", name:"Mock 2 — Writing", desc:"SWT + Essay — aim for 79+ content and linguistic range", tag:"practice" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–1:30 PM",name:"Mock 2 — Reading", desc:"Full section — focus on time management per question type", tag:"practice" },
-    { time:"1:30–1:45 PM",  name:"Short Break", tag:"fixed", fixed:true },
-    { time:"1:45–3:30 PM",  name:"Mock 2 — Listening", desc:"Full section — prioritize dictation accuracy", tag:"practice" },
-    { time:"3:30–5:30 PM",  name:"Mock 2 Full Review", desc:"Compare to Mock 1 — track improvement delta per section", tag:"review" },
-    { time:"5:30–7:00 PM",  name:"Strategy Refinement", desc:"Finalize your section-by-section time strategy for the real exam", tag:"review" },
+  { title:"Mock Exam Day 2", sub:"Full simulation · Replicate true exam conditions", col:"purple", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–6:30 AM",   name:"Warm-Up Set", desc:"RA × 5, RS × 10, ASQ × 10 — keep it light, build momentum", tag:"speaking" },
+    { time:"6:30–8:00 AM",   name:"Mock 2 — Speaking", desc:"Full section exactly as real exam. Score yourself on fluency, content, pronunciation per task", tag:"practice", qcount:"~28 Qs — target 79+ per skill" },
+    { time:"8:00–8:15 AM",   name:"Scheduled Break", tag:"fixed", fixed:true },
+    { time:"8:15–10:00 AM",  name:"Mock 2 — Writing", desc:"SWT × 2 + Essay × 1. Word count 250–270. Check spelling in last 3 minutes", tag:"practice", qcount:"3 Qs — target 79+ content & structure" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–1:00 PM",  name:"Mock 2 — Reading", desc:"All 5 task types. Time management: skip Re-order if stuck, return at end", tag:"practice", qcount:"~15 Qs — target 79+ overall" },
+    { time:"1:00–1:15 PM",   name:"Scheduled Break", tag:"fixed", fixed:true },
+    { time:"1:15–2:45 PM",   name:"Mock 2 — Listening", desc:"Full section. WFD priority — slow down and type accurately, do not rush", tag:"practice", qcount:"~13 Qs — target WFD 100% accuracy" },
+    { time:"2:45–4:30 PM",   name:"Mock 2 Full Review", desc:"Compare Mock 2 vs Mock 1 score per task type. Track delta. Celebrate improvements", tag:"review" },
+    { time:"4:30–6:30 PM",   name:"Strategy Finalization", desc:"Write your exact exam-day time plan per section. Finalize which task types to attempt first", tag:"review" },
   ]},
-  { title:"Final Polish & Confidence", sub:"Light revision, mindset, exam-day preparation", col:"teal", tasks:[
-    { time:"5:00–6:00 AM",  name:"Morning Exercise", tag:"fixed", fixed:true },
-    { time:"6:00–7:00 AM",  name:"Vocabulary Final Review", desc:"Active recall of all key words from past 9 days", tag:"review" },
-    { time:"7:00–8:00 AM",  name:"Read Aloud Polish", desc:"20 complex sentences — smooth, confident, natural delivery", tag:"speaking" },
-    { time:"8:00–9:00 AM",  name:"Essay Template Drill", desc:"Write one essay from memory — no reference materials", tag:"writing" },
-    { time:"9:00–10:00 AM", name:"Write from Dictation Sprint", desc:"30 sentences — maintain 95%+ accuracy", tag:"listening" },
-    { time:"10:00–11:00 AM",name:"Lunch Break", tag:"fixed", fixed:true },
-    { time:"11:00 AM–12:30 PM",name:"Light Mixed Practice", desc:"One of each task type — keep it calm and confident, no marathon", tag:"practice" },
-    { time:"12:30–1:30 PM", name:"Exam Logistics Prep", desc:"Confirm venue, print ID, pack bag, set 3 alarms", tag:"review" },
-    { time:"1:30–2:30 PM",  name:"Mental Rehearsal", desc:"Visualize smooth exam flow — breathe, pace, don't rush", tag:"review" },
-    { time:"2:30–4:00 PM",  name:"Rest & Light Reading", desc:"Academic article reading — no heavy study, protect mental energy", tag:"reading" },
-    { time:"4:00–5:00 PM",  name:"Final Notes Review", desc:"Read all 9 days of improvement notes — celebrate progress", tag:"review" },
+  { title:"Final Polish & Confidence", sub:"Light revision · Exam logistics · Mindset", col:"teal", tasks:[
+    { time:"5:00–6:00 AM",   name:"Morning Exercise", tag:"fixed", fixed:true },
+    { time:"6:00–7:00 AM",   name:"Vocabulary Final Recall", desc:"Active recall of all high-frequency words from 9 days. No new words — consolidate", tag:"review" },
+    { time:"7:00–8:00 AM",   name:"Read Aloud Final Polish × 20", desc:"20 fresh passages. Smooth, confident, natural delivery. Zero hesitation target", tag:"speaking", qcount:"RA – 6–7 Qs on exam day" },
+    { time:"8:00–9:00 AM",   name:"Essay Template from Memory", desc:"Write one essay without looking at template. Time yourself. Aim for 250+ words in 18 min", tag:"writing", qcount:"Essay – 1 Q on exam day" },
+    { time:"9:00–10:00 AM",  name:"Write from Dictation Sprint × 30", desc:"Maintain 95%+ accuracy. Your final WFD practice before exam", tag:"listening", qcount:"WFD – 3–4 Qs on exam day" },
+    { time:"10:00–11:00 AM", name:"Lunch Break", tag:"fixed", fixed:true },
+    { time:"11:00–12:30 PM", name:"Light Mixed Practice × 1 each task type", desc:"One question per task type — calm, confident, no marathon. Just confirmation practice", tag:"practice" },
+    { time:"12:30–1:30 PM",  name:"Exam Logistics Prep", desc:"Confirm venue, print valid ID, pack bag, set 3 alarms, plan travel route", tag:"review" },
+    { time:"1:30–2:30 PM",   name:"Mental Rehearsal", desc:"Visualize smooth exam flow section by section. Breathe, pace, stay focused", tag:"review" },
+    { time:"2:30–4:00 PM",   name:"Rest & Light Academic Reading", desc:"No heavy study. Light reading only. Protect mental energy for tomorrow", tag:"reading" },
+    { time:"4:00–5:00 PM",   name:"Final Notes Review", desc:"Read all 9 days of improvement notes. Your progress is real — go in confident", tag:"review" },
   ]},
 ];
 
@@ -1200,17 +983,15 @@ function buildPlanner() {
   PL_DAYS.forEach((day, i) => {
     const pid = `plday-${i+1}`;
     const checkable = day.tasks.filter(t => !t.fixed);
-    const card = document.createElement('div');
-    card.className = `day-planner-card pl-collapsed`;
-    card.id = pid;
 
     const rows = day.tasks.map((task, j) => {
       const key = `pl-${pid}-t${j}`;
+      const qcountHtml = task.qcount ? `<div class="pl-qcount">📊 ${task.qcount}</div>` : '';
       if (task.fixed) {
         return `<tr class="pl-row-fixed">
           <td class="pl-time">${task.time||''}</td>
           <td><div class="pl-task-name">${task.name}</div>${task.desc?`<div class="pl-task-desc">${task.desc}</div>`:''}</td>
-          <td><span class="pl-tag plt-fixed">🔒 Fixed</span></td>
+          <td><span class="pl-tag plt-fixed">🔒</span></td>
           <td class="pl-check">—</td>
         </tr>`;
       }
@@ -1219,6 +1000,7 @@ function buildPlanner() {
         <td>
           <div class="pl-task-name">${task.name}</div>
           ${task.desc?`<div class="pl-task-desc">${task.desc}</div>`:''}
+          ${qcountHtml}
           <div class="pl-done-date" id="pldate-${key}"></div>
         </td>
         <td><span class="pl-tag plt-${task.tag}">${PL_TAG_LABELS[task.tag]||task.tag}</span></td>
@@ -1229,6 +1011,9 @@ function buildPlanner() {
       </tr>`;
     }).join('');
 
+    const card = document.createElement('div');
+    card.className = 'day-planner-card pl-collapsed';
+    card.id = pid;
     card.innerHTML = `
       <div class="day-planner-header" onclick="plToggle('${pid}')">
         <div class="dph-left">
@@ -1242,36 +1027,38 @@ function buildPlanner() {
           </div>
         </div>
         <div class="dph-right">
-          <svg class="pl-ring-wrap" viewBox="0 0 36 36" aria-hidden="true">
-            <circle class="pl-ring-bg" cx="18" cy="18" r="14"/>
-            <circle class="pl-ring-fill" id="plring-${pid}" cx="18" cy="18" r="14"/>
-          </svg>
+          <!-- Ring with completion indicator -->
+          <div class="pl-ring-wrap" aria-label="Day progress">
+            <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+              <circle class="pl-ring-bg" cx="20" cy="20" r="15"/>
+              <circle class="pl-ring-fill" id="plring-${pid}" cx="20" cy="20" r="15"/>
+            </svg>
+            <div class="pl-ring-tick" id="pltick-${pid}">✓</div>
+            <div class="pl-ring-label" id="plrlbl-${pid}">0</div>
+          </div>
           <span class="pl-chevron">▾</span>
         </div>
       </div>
       <div class="day-planner-body">
         <table class="pl-table">
-          <thead><tr><th>Time</th><th>Task</th><th>Type</th><th>✓</th></tr></thead>
+          <thead><tr><th>Time</th><th>Task & Details</th><th>Type</th><th>✓</th></tr></thead>
           <tbody>${rows}</tbody>
         </table>
         <div class="pl-notes-lbl">✏ Day ${i+1} Notes</div>
-        <textarea class="pl-notes" id="plnotes-${pid}" placeholder="Observations, improvements needed, things to revisit…"
+        <textarea class="pl-notes" id="plnotes-${pid}" placeholder="Observations, improvements, things to revisit…"
           oninput="plSaveNotes('plnotes-${pid}',this.value)"></textarea>
       </div>`;
     container.appendChild(card);
   });
 }
 
-function plToggle(pid) {
-  document.getElementById(pid).classList.toggle('pl-collapsed');
-}
+function plToggle(pid) { document.getElementById(pid).classList.toggle('pl-collapsed'); }
 function plExpandAll()  { document.querySelectorAll('.day-planner-card').forEach(c => c.classList.remove('pl-collapsed')); }
 function plCollapseAll(){ document.querySelectorAll('.day-planner-card').forEach(c => c.classList.add('pl-collapsed')); }
 
 function plFmtDate(iso) {
   const d = new Date(iso);
-  return '✓ ' + d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) +
-    ' ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  return '✓ '+d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
 }
 
 function plCheck(key, pid, total, checked) {
@@ -1295,92 +1082,89 @@ function plSaveNotes(id, val) { localStorage.setItem('pl_'+id, val); }
 
 function plUpdateDay(pid, total) {
   const card = document.getElementById(pid);
-  const cbs = card.querySelectorAll('input[type=checkbox]');
+  const cbs  = card.querySelectorAll('input[type=checkbox]');
   let done = 0; cbs.forEach(cb => { if (cb.checked) done++; });
-  const pct = total > 0 ? done/total : 0;
-  const ring = document.getElementById('plring-'+pid);
-  if (ring) ring.style.strokeDashoffset = (88*(1-pct)).toFixed(2);
-  card.classList.toggle('pl-all-done', done===total && total>0);
+  const pct = total > 0 ? done / total : 0;
+
+  // SVG ring — circumference = 2π×15 ≈ 94.25
+  const circ = 94.25;
+  const ring = document.getElementById('plring-' + pid);
+  if (ring) ring.style.strokeDashoffset = (circ * (1 - pct)).toFixed(2);
+
+  // Tick (shown only when ALL done)
+  card.classList.toggle('pl-all-done', done === total && total > 0);
+
+  // Counter label (hidden when all done)
+  const lbl = document.getElementById('plrlbl-' + pid);
+  if (lbl) lbl.textContent = done + '/' + total;
 }
 
 function plUpdateGlobal() {
   const allCBs = document.querySelectorAll('#planner-days input[type=checkbox]');
-  let done=0, total=allCBs.length;
+  let done = 0, total = allCBs.length;
   allCBs.forEach(cb => { if (cb.checked) done++; });
-  const pct = total>0 ? (done/total*100) : 0;
+  const pct = total > 0 ? (done / total * 100) : 0;
   const bar = document.getElementById('planner-bar');
-  if (bar) bar.style.width = pct.toFixed(1)+'%';
+  if (bar) bar.style.width = pct.toFixed(1) + '%';
   const lbl = document.getElementById('planner-label');
   if (lbl) lbl.textContent = `${done} / ${total} tasks completed`;
-}
-
-function loadPlannerState() {
-  document.querySelectorAll('#planner-days input[type=checkbox]').forEach(cb => {
-    const saved = localStorage.getItem('pl_'+cb.id);
-    if (saved) {
-      cb.checked = true;
-      const row = cb.closest('tr');
-      if (row) row.classList.add('pl-row-done');
-      const el = document.getElementById('pldate-'+cb.id);
-      if (el) { el.textContent = plFmtDate(saved); el.style.display = 'block'; }
-    }
-  });
-  document.querySelectorAll('textarea.pl-notes').forEach(ta => {
-    const saved = localStorage.getItem('pl_'+ta.id);
-    if (saved !== null) ta.value = saved;
-  });
-  PL_DAYS.forEach((day, i) => {
-    const pid = `plday-${i+1}`;
-    const total = day.tasks.filter(t => !t.fixed).length;
-    plUpdateDay(pid, total);
-  });
-  plUpdateGlobal();
 }
 
 function plResetAll() {
   if (!confirm('Clear all planner progress and notes? This cannot be undone.')) return;
   document.querySelectorAll('#planner-days input[type=checkbox]').forEach(cb => {
     cb.checked = false;
-    localStorage.removeItem('pl_'+cb.id);
+    localStorage.removeItem('pl_' + cb.id);
     const row = cb.closest('tr');
     if (row) row.classList.remove('pl-row-done');
-    const el = document.getElementById('pldate-'+cb.id);
-    if (el) { el.textContent=''; el.style.display='none'; }
+    const el = document.getElementById('pldate-' + cb.id);
+    if (el) { el.textContent = ''; el.style.display = 'none'; }
   });
   document.querySelectorAll('textarea.pl-notes').forEach(ta => {
-    ta.value=''; localStorage.removeItem('pl_'+ta.id);
+    ta.value = ''; localStorage.removeItem('pl_' + ta.id);
   });
   document.querySelectorAll('.day-planner-card').forEach(c => c.classList.remove('pl-all-done'));
-  document.querySelectorAll('.pl-ring-fill').forEach(r => r.style.strokeDashoffset='88');
+  document.querySelectorAll('.pl-ring-fill').forEach(r => r.style.strokeDashoffset = '94.25');
+  document.querySelectorAll('.pl-ring-label').forEach(l => l.textContent = '0');
   plUpdateGlobal();
 }
-</script>
 
-<script>
-function showGroup(group, btn) {
-  // Handle all elements with data-group (including .section elements)
-  document.querySelectorAll('[data-group]').forEach(function(el) {
-    var isMatch = el.dataset.group === group;
-    el.style.display = isMatch ? 'block' : 'none';
-    // Also sync .active class for .section elements (needed for CSS animation & display rule)
-    if (el.classList.contains('section')) {
-      if (isMatch) {
-        el.classList.add('active');
-      } else {
-        el.classList.remove('active');
-      }
+function loadPlannerState() {
+  document.querySelectorAll('#planner-days input[type=checkbox]').forEach(cb => {
+    const saved = localStorage.getItem('pl_' + cb.id);
+    if (saved) {
+      cb.checked = true;
+      const row = cb.closest('tr');
+      if (row) row.classList.add('pl-row-done');
+      const el = document.getElementById('pldate-' + cb.id);
+      if (el) { el.textContent = plFmtDate(saved); el.style.display = 'block'; }
     }
   });
-  document.querySelectorAll('.master-tab').forEach(function(t) { t.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll('textarea.pl-notes').forEach(ta => {
+    const saved = localStorage.getItem('pl_' + ta.id);
+    if (saved !== null) ta.value = saved;
+  });
+  PL_DAYS.forEach((day, i) => {
+    const pid   = `plday-${i+1}`;
+    const total = day.tasks.filter(t => !t.fixed).length;
+    plUpdateDay(pid, total);
+  });
+  plUpdateGlobal();
 }
 
-// Use DOMContentLoaded so it runs before the other DOMContentLoaded listener finishes hiding things
-document.addEventListener('DOMContentLoaded', function() {
+// ── Init ──
+window.addEventListener('DOMContentLoaded', () => {
   showGroup('timetable', document.querySelector('.master-tab'));
+  buildPlanner();
+  loadPlannerState();
+  const data = loadData();
+  ALL_TEMPLATES.forEach(id => applyState(id, data[id] || null));
+  updateProgress();
+  // Build audio players for all templates that have text
+  Object.keys(TEMPLATE_TEXTS).forEach(id => buildAudioPlayer(id));
+  // Load voices (async in some browsers)
+  if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = () => {};
 });
 </script>
-
 </body>
 </html>
